@@ -2,8 +2,8 @@
 
 * **Online URL**: TODO
 * **Team members**:
-  * Contact person: fanerl@andrew.cmu.edu
-  * shuaidop@andrew.cmu.edu
+  * Contact person: Faner Lin (fanerl@andrew.cmu.edu)
+  * Shuaidong Pan (shuaidop@andrew.cmu.edu)
 * **Track**: Narrative
 
 ## Work distribution
