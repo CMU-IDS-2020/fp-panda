@@ -4,7 +4,7 @@
 * **Team members**:
   * Contact person: fanerl@andrew.cmu.edu
   * shuaidop@andrew.cmu.edu
-* **Track**: Narrative, Model
+* **Track**: Narrative
 
 ## Work distribution
 
