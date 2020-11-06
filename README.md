@@ -4,7 +4,7 @@
 * **Team members**:
   * Contact person: fanerl@andrew.cmu.edu
   * shuaidop@andrew.cmu.edu
-* **Track**: TODO (one of Narrative, Model, or Interactive Visualization/Application)
+* **Track**: Narrative, Model
 
 ## Work distribution
 
