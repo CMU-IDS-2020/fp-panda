@@ -5,232 +5,250 @@ import numpy as np
 import datetime
 from vega_datasets import data
 import geopandas as gpd
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
-st.title('Air Pollution Study of United States from 2000 to 2016')
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.tokenize import word_tokenize 
+
+import string
+import nltk
+from nltk import PorterStemmer
+from nltk import WordNetLemmatizer
+import re
+
+nltk.download('vader_lexicon')
+nltk.download('stopwords')
+nltk.download('wordnet')
+stopwords=nltk.corpus.stopwords.words('english')
+
+
+st.title('Fake News Prediction')
+st.header('Understanding Fake News and How Models Distinguish Them')
 
 intro_text="With the current massive use of social media, information quality becomes an important issue when it comes to news reporting and other sources of factuality checking. Given the hot topics in fake news classification and toxic comments classification, many datasets have been collected, and they cover a wide range of domains. For example, the LIAR dataset was collected from Politifact and covers the political topics, while FEVER which covers scientific topics is collected from Wikipedia. As more and more fake news prevails on social media, it is getting harder for people to distinguish between true news and fake news and people could sometimes easily be misled by the seemingly-true fake news. As a result, different fake news prediction models have developed intending to serve as fake news detector and help people perform fact-checking. Many state-of-the-art fake news prediction models have achieved satisfying performance and even outperforming human. This article aims to investigate the characteristics of fake news articles, focusing on a selected fake news dataset, and studying how fake news prediction models distinguish between true news and fake news. This allows people to understand how those models differentiate true news and fake news and would also be beneficial for improving reader's ability in identifying fake news. "
 
 st.write(intro_text)
 
-#https://academic.oup.com/eurheartj/article/36/2/83/2293343
 
-def read_data(files):
-    total_df=[]
-    for f in files:
-        df=pd.read_csv(f)
-        df=df.iloc[:,1:]
-        df['Date Local']=pd.to_datetime(df['Date Local'])
-        total_df.append(df)
-        # df=df.drop(['State Code','County Code','Site Num','Address','NO2 Units','O3 Units','SO2 Units','CO Units'],axis=1)
-    df=pd.concat(total_df, axis=0)
-    return df
-files=[f'data/US_pollution_2000_2016_{i}.csv' for i in range(0, 10)]
-df=read_data(files)
-
-df_state=df[['State','Date Local','NO2 AQI','O3 AQI','SO2 AQI','CO AQI']]
-df_state=df_state.dropna().reset_index(drop=True)
-# df_state['Date Local']=pd.to_datetime(df_state['Date Local'])
-df_state['Year']=pd.to_datetime(df_state['Date Local']).dt.to_period('Y')
-df_state['Year_Month']=pd.to_datetime(df_state['Date Local']).dt.to_period('M')
-
-pollutant_list=['NO2', 'O3', 'CO', 'SO2']
-state_list=list(df_state.State.value_counts().index)
+st.header('On what subjects do people tend to lie?')
 
 
-pollutant_name=st.selectbox(
-    'Select a Pollutant ',
-     pollutant_list)
-pollutant=pollutant_name+' AQI'
 
-states = st.multiselect(
-     'Select States ',
-     state_list,
-     [state_list[0], state_list[1]])
+columns=['id','label','statement','subject','speaker', 'job', 'state','party','barely_true_counts','false_counts',
+                  'half_true_counts','mostly_true_counts','pants_on_fire_counts','context']
+label_values=['false','pants-fire','barely-true','true','mostly-true','false','half-true']
+meta_feature=['subject','speaker', 'job', 'state','party']
 
-frequency = st.selectbox(
-     'Select Plotting Frequency ',
-     ['Year','Month', 'Day'])
-
-year_range = st.slider(
-     'Select a range of values',
-     datetime.datetime(2000, 1, 1),datetime.datetime(2016, 5, 31), (datetime.datetime(2009, 1, 1), datetime.datetime(2014, 3, 1)),format="MM/DD/YYYY")
-
-
-def filter_state(df_state):
-    sub_df=df_state.loc[df_state.State.isin(states)]
-    return sub_df
-def filter_pollutant(sub_df):
-    sub_df=sub_df.loc[:,['State', 'Date Local','Year', 'Year_Month', pollutant]]
-    return sub_df
-
-def filter_freq(sub_df):
-    if frequency=='Year':
-        sub_df=sub_df.groupby(['State','Year']).agg('mean').reset_index()
-        sub_df['Year']=pd.PeriodIndex(sub_df.Year, freq='Y').to_timestamp()
-    elif frequency=='Month':
-        sub_df=sub_df.groupby(['State','Year_Month']).agg('mean').reset_index()
-        sub_df['Year_Month']=pd.PeriodIndex(sub_df.Year_Month, freq='M').to_timestamp()
-#         sub_df=sub_df.drop('Year', axis=1)
-    else:
-        sub_df=sub_df.loc[:,['State', 'Date Local', pollutant]]
-    sub_df.columns=['State', 'Time', 'AQI']
-    return sub_df
+def read_data():
     
-def filter_time(sub_df):
-    sub_df=sub_df[(sub_df['Time']>year_range[0]) & (sub_df['Time']<year_range[1])] 
-    return sub_df
+    df_train=pd.read_csv('liar_dataset/train.tsv', delimiter='\t', header=None, names=columns)
+    df_test=pd.read_csv('liar_dataset/test.tsv', delimiter='\t', header=None, names=columns)
+    df_valid=pd.read_csv('liar_dataset/valid.tsv', delimiter='\t', header=None, names=columns)
+    df_total=pd.concat([df_train, df_test, df_valid]).reset_index(drop=True)
+    return df_train, df_test, df_valid, df_total
 
-sub_df=filter_state(df_state)
-sub_df=filter_pollutant(sub_df)
-sub_df=filter_freq(sub_df)
-sub_df=filter_time(sub_df)
+df_train, df_test, df_valid, df_total=read_data()
 
-# sub_df=df_state.melt(id_vars=['State', 'Date Local'], var_name='Pollutant_Type', value_name='AQI')
+st.write('Example news statement from LIAR dataset')
+df_train.statement[:10]
 
-# graph 1
-st.write(f'Air Quality Index (AQI) for {pollutant_name} over time')
-scatter_chart=st.altair_chart(
-    alt.Chart(sub_df,height=350,width=700).mark_line().encode(
-        x='Time:T',
-        y='AQI',
-        color='State'
-    ).interactive()
-)
+combine_labels=st.checkbox('Combined labels')
 
-# graph 2
+top_n=st.slider(
+    'Select the number of entries to show',
+     1, 20)
 
-def filter_time(sub_df):
-    sub_df=sub_df[(sub_df['Date Local']>year_range[0]) & (sub_df['Date Local']<year_range[1])] 
-    return sub_df
+# label_sel=st.selectbox(
+#     'Select a label value: ',
+#      label_values)
 
-source=filter_time(df_state)
-source=source.groupby('State')['NO2 AQI', 'O3 AQI','SO2 AQI','CO AQI'].agg('mean').reset_index()
-source.columns=['state', 'NO2 AQI', 'O3 AQI','SO2 AQI','CO AQI']
+kind=['subject','speaker', 'job', 'state']
+def meta_feature_filtering(df, top_n, label, feature_sel):
+    df_sub=df_train.loc[df_train.label==label]
+    sel=pd.DataFrame(df_sub[feature_sel].value_counts()[:top_n]).reset_index()
+    sel.columns=['kind','count']
+    return sel
 
-cur=pd.read_csv('https://vega.github.io/vega-datasets/data/population_engineers_hurricanes.csv')
-source=cur[['state','id']].merge(source, left_on='state', right_on='state', how='left')
-source=source.replace(np.nan, 0)
-# source.drop('state', axis=1, inplace=True)
-# variable_list=['NO2 AQI', 'O3 AQI', 'CO AQI', 'SO2 AQI']
+def meta_feature_filtering_combined(df, top_n, kind):
+    total=[]
+    
+    for l in label_values:
+        df_sub=df_train.loc[df_train.label==l]
+        sel=pd.DataFrame(df_sub[kind].value_counts()[:top_n]).reset_index()
+        sel.columns=['kind',f'{l}']
+        row_name=sel.iloc[:,0]
+        total.append(sel.iloc[:,1])
+    total.append(row_name)
+    return pd.concat(total, axis=1)
 
+display_type=['Absolute', 'Percentage']
 
-highlight = alt.selection_single(on='mouseover', fields=['state'], empty='none')
-states=alt.topo_feature(data.us_10m.url, 'states')
-state_map=alt.Chart(states).mark_geoshape().encode(
-    color=alt.condition(highlight, alt.value('yellow'), f'{pollutant}:Q'),
-    tooltip=['state:N',f'{pollutant}:Q'],
-).transform_lookup(
-    lookup='id',
-    from_=alt.LookupData(source, 'id', [pollutant, 'state'])
-).add_selection(highlight).project(
-    type='albersUsa'
-).properties(
-    width=900,
-    height=600
-)
-state_map
+absolute=st.selectbox(
+        'Select type of values: ',
+        display_type)
 
-## graph3
-st.write('Now we could further investigate the cities with highest pollutants or cities with lowest pollutants')
+feature_sel=st.selectbox(
+    'Select a Meta Feature: ',
+     meta_feature)
 
+combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel)
+if absolute=='Percentage':
+    v=combined_table.iloc[:,-1]
+    combined_table['sum']=combined_table.sum(axis=1)
+    combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
+    combined_table=combined_table.drop('sum', axis=1)
+combined_table=combined_table.melt(id_vars='kind')
 
-pollutant_name2=st.selectbox(
-    'Select a Pollutant ',
-     pollutant_list, key='pollutant2')
+if combine_labels:
+    
+    scatter_chart=st.altair_chart(
+        alt.Chart(combined_table, width=700).mark_bar().encode(
+            x='value:Q',
+            y=alt.Y('kind:N', sort='-x'),
+            color='variable:N'
+        ).interactive()
+    )
 
-year_range2 = st.slider(
-     'Select start day and end day ',
-     datetime.datetime(2000, 1, 1),datetime.datetime(2016, 5, 31), (datetime.datetime(2009, 1, 1), datetime.datetime(2014, 3, 1)),format="MM/DD/YYYY")
-
-region_type=st.selectbox(
-    'Check Max Value Hour at level ',
-     ['State', 'County','City'], key='region_type')
-
-city_type=st.selectbox(
-    f'Select {region_type} with highest/lowest mean of concentration pollutants ',
-     ['Highest', 'Lowest'])
-
-city_num=st.selectbox(
-    f'Select top N {region_type} with highest/lowest mean of concentration pollutants ',
-     list(range(1, 144)))
-
-def filter_time2(df):
-    df=df[(df['Date Local']>year_range2[0]) & (df['Date Local']<year_range2[1])] 
-    return df
-
-st.write(f'Top {city_num} {region_type} with highest mean of concentration of {pollutant_name2} within a day')
-
-time_df=filter_time2(df)
-var_name=pollutant_name2+' Mean'
-if city_type=='Highest':
-    top_cities=time_df.groupby(region_type)[var_name].agg('mean').sort_values(ascending=False)[:int(city_num)].index
 else:
-    top_cities=time_df.groupby(region_type)[var_name].agg('mean').sort_values(ascending=True)[:int(city_num)].index
-    
-city_df=time_df.loc[time_df[region_type].isin(top_cities)]
-current_var_list=[pollutant_name2 + i for i in [' Mean', ' 1st Max Value', ' AQI']]
-city_df=city_df[[region_type]+current_var_list].groupby(region_type).agg('mean').reset_index()
-city_df=city_df.sort_values(by=current_var_list[1]).reset_index(drop=True)
-city_df
-city_df=city_df.melt(id_vars=region_type, var_name='Measurements', value_name='Mean value')
 
-scatter_chart=st.altair_chart(
-    alt.Chart(city_df).mark_bar(opacity=0.5).encode(
-        x=alt.X('Mean value:Q', stack=None),
-        y=alt.Y(region_type, sort=None),
-        color="Measurements",
-    ).properties(
-        width=600,
-        height=500
-    ).interactive()
-)
+    label_sel=st.selectbox(
+        'Select a label value: ',
+         label_values)
+
+    # combined_table=meta_feature_filtering(df_train, top_n, label_sel, feature_sel)
+    combined_table=combined_table.loc[combined_table.variable==label_sel]
+    combined_table=combined_table.drop('variable', axis=1)
+
+    scatter_chart=st.altair_chart(
+        alt.Chart(combined_table).mark_bar().encode(
+            x='value:Q',
+            y=alt.Y('kind:N', sort='-x')
+        ).interactive()
+    )
 
 
-# graph 5:
-st.write("We could now turn to the counts of hours in a day when the maximum pollutant concentration was recorded in a given day for a given region. ")
-year_range3 = st.slider(
-     'Select start day and end day ',
-     datetime.datetime(2000, 1, 1),datetime.datetime(2016, 5, 31), (datetime.datetime(2009, 1, 1), datetime.datetime(2014, 3, 1)),format="MM/DD/YYYY", key='yearRange3')
 
-def filter_time3(df):
-    df=df[(df['Date Local']>year_range3[0]) & (df['Date Local']<year_range3[1])] 
+st.header('Word Frequency and use of punctuation')
+
+
+def text_lowercase(text): 
+    return text.lower() 
+
+def remove_punctuation(text): 
+    translator=str.maketrans('', '', string.punctuation) 
+    return text.translate(translator) 
+
+def remove_whitespace(text): 
+    return  " ".join(text.split()) 
+
+def remove_stopwords(text): 
+    word_tokens=word_tokenize(text) 
+    filtered_text=[word for word in word_tokens if word not in stopwords] 
+    return " ".join(filtered_text)
+
+def stem_words(text): 
+    word_tokens=word_tokenize(text) 
+    stems=[stemmer.stem(word) for word in word_tokens] 
+    return " ".join(stems) 
+
+lemmatizer=WordNetLemmatizer() 
+stemmer=PorterStemmer()
+
+def lemmatize_word(text): 
+    word_tokens=word_tokenize(text) 
+    lemmas=[lemmatizer.lemmatize(word) for word in word_tokens] 
+    return " ".join(lemmas) 
+
+def preprocess_statement(df):
+    df['new_statement']=df.statement.apply(lambda x: text_lowercase(x))
+    df['new_statement']=df.new_statement.apply(lambda x: remove_punctuation(x))
+    df['new_statement']=df.new_statement.apply(lambda x: remove_whitespace(x))
+    df['new_statement']=df.new_statement.apply(lambda x: remove_stopwords(x))
+    df['new_statement']=df.new_statement.apply(lambda x: stem_words(x))
+    df['new_statement']=df.new_statement.apply(lambda x: lemmatize_word(x))
     return df
 
-time_df=filter_time3(df)
+def extract_key_words(df, label, subject):
+    sub_df=df.loc[df.label==label]
+    sub_df=sub_df.loc[sub_df.subject==subject]
+    total_text=sub_df.new_statement.sum()
+    return total_text
 
-region_type=st.selectbox(
-    'Check Max Value Hour at level ',
-     ['State', 'County','City'])
+top_ten_subjects=df_train.subject.value_counts()[:10].index
 
-if region_type=='State':
-    region_name=st.selectbox(
-    f'Select a {region_type} ',
-     list(df.State.value_counts().index))
-elif region_type=='County':
-    region_name=st.selectbox(
-    f'Select a {region_type} ',
-     list(df.County.value_counts().index))
-else:
-    region_name=st.selectbox(
-    f'Select a {region_type} ',
-     list(df.City.value_counts().index))
+df_train=preprocess_statement(df_train)
+
+label_sel=st.selectbox(
+        'Select a label value: ',
+         label_values, key='label_sel2')
+
+subject_type=st.selectbox(
+        'Select a subject topic: ',
+         top_ten_subjects)
+
+total_text=extract_key_words(df_train, label_sel, subject_type)
+
+fig=plt.figure(figsize=(10, 5))
+wordcloud=WordCloud(stopwords=stopwords, background_color="white").generate(total_text)
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.show()
+st.pyplot(fig)
+
+st.header('Sentiment analysis on true news and fake news')
+
+
+sid=SentimentIntensityAnalyzer()
+
+
+def analyze_sentiment(sentence):
+    score=sid.polarity_scores(sentence)
+#     for k in sorted(score):
+#         print('{0}: {1}, '.format(k, score[k]), end='')
+#     print()
+    return score
+
+def sentiment_for_news(df, label):
+    sub_df=df.loc[df.label==label].reset_index(drop=True)
+    scores={}
+    for i in range(0, len(sub_df)):
+        score=analyze_sentiment(sub_df.statement[i])
+        scores['compound']=scores.get('compound',[])+[score['compound']]
+        scores['neg']=scores.get('neg',[])+[score['neg']]
+        scores['neu']=scores.get('neu',[])+[score['neu']]
+        scores['pos']=scores.get('pos',[])+[score['pos']]
+    return pd.DataFrame.from_dict(scores)
+
+def sentiment_for_type(df, sentiment_type):
+    scores={}
+    for v in label_values:
+        sub_df=df.loc[df.label==v].reset_index(drop=True)
+        for i in range(0, len(sub_df)):
+            score=analyze_sentiment(sub_df.statement[i])
+            scores[v]=scores.get(v,[])+[score[sentiment_type]]
+        
+    return scores
+
+sentiment_type=['compound','neg','neu','pos']
+sentiment_type_table=sentiment_for_news(df_train, 'true')
+sentiment_type_table
+
+alt.Chart(sentiment_type_table).transform_fold(
+    ['compound',
+     'neg',
+     'neu',
+     'pos'],
+    as_ = ['Sentiments', 'value']
+).transform_density(
+    density='value',
+    bandwidth=0.3,
+    groupby=['Sentiments'],
+    extent= [-2, 5]
+).mark_area().encode(
+    alt.X('value:Q'),
+    alt.Y('density:Q', axis=None),
+    alt.Row('Sentiments:N')
     
-max_hour_list=['CO 1st Max Hour', 'O3 1st Max Hour', 'SO2 1st Max Hour','NO2 1st Max Hour']
-hour_df=df[[region_type]+max_hour_list].melt(id_vars=region_type, var_name='Pollutant Type', value_name='Max Hour Count') 
-hour_df=hour_df.loc[hour_df[region_type]==region_name]
-hour_df2=hour_df.groupby([region_type, 'Pollutant Type','Max Hour Count']).size().unstack(fill_value=0)
-hour_df2
-hour_df=hour_df.groupby([region_type, 'Pollutant Type','Max Hour Count']).size().reset_index()
-hour_df.columns=[region_type,'Pollutant Type', 'Hour in a day', 'Max Hour Count']
-
-st.write(f'The count of hours when the maximum pollutants concentration was recorded in a given day for {region_name}')
-scatter_chart=st.altair_chart(
-alt.Chart(hour_df).mark_bar().encode(
-    x='Hour in a day',
-    y='Max Hour Count',
-    color='Pollutant Type:N',
-    row="Pollutant Type:N"
-).properties(
-    height=100
-)
-)
+).properties(width=400, height=50)
