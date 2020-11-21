@@ -18,6 +18,7 @@ import re
 nltk.download('vader_lexicon')
 nltk.download('stopwords')
 nltk.download('wordnet')
+nltk.download('punkt')
 stopwords=nltk.corpus.stopwords.words('english')
 
 
