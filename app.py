@@ -41,6 +41,7 @@ columns=['id','label','statement','subject','speaker', 'job', 'state','party','b
 label_values=['false','pants-fire','barely-true','true','mostly-true','false','half-true']
 meta_feature=['subject','speaker', 'job', 'state','party']
 
+@st.cache
 def read_data():
     
     df_train=pd.read_csv('liar_dataset/train.tsv', delimiter='\t', header=None, names=columns)
