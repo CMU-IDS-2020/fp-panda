@@ -14,6 +14,9 @@ import nltk
 from nltk import PorterStemmer
 from nltk import WordNetLemmatizer
 import re
+from nltk.corpus import wordnet as wn
+from nltk.corpus import stopwords
+from nltk.corpus.reader.wordnet import WordNetError
 
 nltk.download('vader_lexicon')
 nltk.download('stopwords')
