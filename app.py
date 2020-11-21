@@ -34,14 +34,13 @@ with open('preprocess/Introduction.txt', 'r') as f:
 st.write(intro_text)
 st.header('On what subjects do people tend to lie?')
 
-@st.cache
 
 columns=['id','label','statement','subject','speaker', 'job', 'state','party','barely_true_counts','false_counts',
                   'half_true_counts','mostly_true_counts','pants_on_fire_counts','context']
 label_values=['false','pants-fire','barely-true','true','mostly-true','false','half-true']
 meta_feature=['subject','speaker', 'job', 'state','party']
 
-
+@st.cache
 def read_data():
     
     df_train=pd.read_csv('liar_dataset/train.tsv', delimiter='\t', header=None, names=columns)
@@ -72,6 +71,7 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
     sel.columns=['kind','count']
     return sel
 
+@st.cache
 def meta_feature_filtering_combined(df, top_n, kind):
     total=[]
     
@@ -159,6 +159,7 @@ def lemmatize_word(text):
     lemmas=[lemmatizer.lemmatize(word) for word in word_tokens] 
     return " ".join(lemmas) 
 
+@st.cache
 def preprocess_statement(df):
     df['new_statement']=df.statement.apply(lambda x: text_lowercase(x))
     df['new_statement']=df.new_statement.apply(lambda x: remove_punctuation(x))
@@ -168,6 +169,7 @@ def preprocess_statement(df):
     df['new_statement']=df.new_statement.apply(lambda x: lemmatize_word(x))
     return df
 
+@st.cache
 def extract_key_words(df, label, meta_feature, value):
     sub_df=df.loc[df.label==label]
     sub_df=sub_df.loc[sub_df[meta_feature]==value].reset_index(drop=True)
@@ -210,7 +212,7 @@ st.header('Overall Sentiment analysis')
 
 
 sid=SentimentIntensityAnalyzer()
-
+@st.cache
 def analyze_sentiment(sentence):
     score=sid.polarity_scores(sentence)
 #     for k in sorted(score):
@@ -218,6 +220,7 @@ def analyze_sentiment(sentence):
 #     print()
     return score
 
+@st.cache
 def sentiment_for_news(df, label, meta_feature, value):
     sub_df=df.loc[df.label==label]
     sub_df=sub_df.loc[sub_df[meta_feature]==value].reset_index(drop=True)
@@ -230,6 +233,7 @@ def sentiment_for_news(df, label, meta_feature, value):
         scores['positive']=scores.get('positive',[])+[score['pos']]
     return pd.DataFrame.from_dict(scores)
 
+@st.cache
 def sentiment_for_type(df, sentiment_type):
     scores={}
     for v in label_values:
@@ -318,6 +322,7 @@ def get_other_statistics(df, label, if_filter, meta_feature, value):
     
     return readabilty_grades_list, sentence_info_list, word_usage_list, sentence_beginnings_list
 
+@st.cache
 def select_df(var1, var2, subcategory, statistic_df, if_filter, n):
     df=statistic_df[subcategory]
     sub_df=df[[var1, var2, 'label']]
