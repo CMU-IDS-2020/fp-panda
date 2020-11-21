@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import numpy as np
-from wordcloud import WordCloud
+# from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 import nltk
@@ -14,6 +14,7 @@ import nltk
 from nltk import PorterStemmer
 from nltk import WordNetLemmatizer
 import re
+import wordcloud
 
 nltk.download('vader_lexicon')
 nltk.download('stopwords')
