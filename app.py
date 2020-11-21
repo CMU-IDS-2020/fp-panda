@@ -24,7 +24,7 @@ stopwords=nltk.corpus.stopwords.words('english')
 st.title('Fake News Prediction')
 st.header('Understanding Fake News and How Models Distinguish Them')
 
-with open('Introduction.txt', 'r') as f:
+with open('preprocess/Introduction.txt', 'r') as f:
     intro_text=f.readlines()[0]
 
 st.write(intro_text)
