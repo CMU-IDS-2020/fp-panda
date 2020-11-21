@@ -22,6 +22,8 @@ Update towards the end of the project.
 - [ ] Develop a prototype of your project.
 - [ ] Create a 5 minute video to demonstrate your project and lists any question you have for the course staff. The contact should submit the video on Canvas.
 
+slides for design review: https://docs.google.com/presentation/d/1VTH1WSd9Kigl7f7B-tc7kV_f1Nr3A_MZOovPSc6XQ6U/edit?usp=sharing
+
 ### Final deliverables
 
 - [ ] All code for the project should be in the repo.
