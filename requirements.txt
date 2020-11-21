@@ -1,1 +1,12 @@
-
+streamlit
+pandas
+altair
+numpy
+nltk
+vega_datasets
+datetime
+wordcloud
+matplotlib
+string
+re
+readability
