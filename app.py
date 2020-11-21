@@ -34,14 +34,14 @@ with open('preprocess/Introduction.txt', 'r') as f:
 st.write(intro_text)
 st.header('On what subjects do people tend to lie?')
 
-
+@st.cache
 
 columns=['id','label','statement','subject','speaker', 'job', 'state','party','barely_true_counts','false_counts',
                   'half_true_counts','mostly_true_counts','pants_on_fire_counts','context']
 label_values=['false','pants-fire','barely-true','true','mostly-true','false','half-true']
 meta_feature=['subject','speaker', 'job', 'state','party']
 
-@st.cache(allow_output_mutation=True)
+
 def read_data():
     
     df_train=pd.read_csv('liar_dataset/train.tsv', delimiter='\t', header=None, names=columns)
