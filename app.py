@@ -33,7 +33,7 @@ st.write("Says 57 percent of federal spending goes to the military and just 1 pe
 st.write("Topic: federal-budget,military,poverty")
 st.write("Speaker: facebook-posts")
 st.write("Job: Social media posting")
-option = st.sidebar.selectbox(
+option = st.selectbox(
     'True or False',
      ['True', 'False'])
 
