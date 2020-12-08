@@ -52,15 +52,14 @@ option2 = st.selectbox(
 'You think the statement is:', option2
 
 
-st.write("Says 57 percent of federal spending goes to the military and just 1 percent goes to food and agriculture, including food stamps.	federal-budget,military,poverty")
-st.write("Topic: federal-budget,military,poverty")
-st.write("Speaker: facebook-posts")
-st.write("Job: Social media posting")
-option1 = st.selectbox(
+st.write("Says President Barack Obama told a room of students, Children, every time I clap my hands together, a child in America dies from gun violence, and then a child told him he could solve the problem by not clapping any more.")
+st.write("Topic: guns")
+st.write("Speaker: chain-email")
+option3 = st.selectbox(
     'True or False',
-     ['True', 'False', "I don't know"])
+     ['True', 'False', "I don't know"], key='option3')
 
-'You think the statement is:', option1
+'You think the statement is:', option3
 
 
 
