@@ -35,7 +35,7 @@ st.write("Speaker: facebook-posts")
 st.write("Job: Social media posting")
 option1 = st.selectbox(
     'True or False',
-     ['True', 'False', "I don't know"], key="option1")
+     ["I don't know", 'True', 'False'], key="option1")
 
 'You think the statement is:', option1
 
@@ -47,7 +47,7 @@ st.write("Job: U.S. representative")
 st.write("Party: democrat")
 option2 = st.selectbox(
     'True or False',
-     ['True', 'False', "I don't know"], key="option2")
+     ["I don't know", 'True', 'False'], key="option2")
 
 'You think the statement is:', option2
 
@@ -57,9 +57,33 @@ st.write("Topic: guns")
 st.write("Speaker: chain-email")
 option3 = st.selectbox(
     'True or False',
-     ['True', 'False', "I don't know"], key='option3')
+     ["I don't know", 'True', 'False'], key='option3')
 
 'You think the statement is:', option3
+
+
+st.write("Says Hillary Clinton wants to go to a single-payer plan for health care")
+st.write("Topic: health-care")
+st.write("Speaker: Donald Trump")
+st.write('Job: President-Elect')
+option4 = st.selectbox(
+    'True or False',
+     ["I don't know", 'True', 'False'], key='option4')
+
+st.write("There is no record of congresswoman Betty Sutton ... ever holding a single in-person town hall meeting open to the general public.")
+st.write("Topic: job-accomplishments")
+st.write("Speaker: Jim Renacci")
+st.write("Job: U.S. representative")
+st.write("Party: Republican")
+option5 = st.selectbox(
+    'True or False',
+     ["I don't know", 'True', 'False'], key='option5')
+
+
+fact_list=[]
+check=st.button('check my answer', key='check')
+
+
 
 
 
