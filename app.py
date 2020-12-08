@@ -27,17 +27,41 @@ stopwords=nltk.corpus.stopwords.words('english')
 
 st.title("Learn to Predict Fake News")
 st.header("Let's start with a small test")
-st.write("Could you predict whether the following news statements are true or fake?")
+st.subheader("Could you correctly predict whether the following news statements are true or fake?")
 
 st.write("Says 57 percent of federal spending goes to the military and just 1 percent goes to food and agriculture, including food stamps.	federal-budget,military,poverty")
 st.write("Topic: federal-budget,military,poverty")
 st.write("Speaker: facebook-posts")
 st.write("Job: Social media posting")
-option = st.selectbox(
+option1 = st.selectbox(
     'True or False',
-     ['True', 'False'])
+     ['True', 'False', "I don't know"], key="option1")
 
-'You think the statement is:', option
+'You think the statement is:', option1
+
+
+st.write("The Fed created $1.2 trillion out of nothing, gave it to banks, and some of them foreign banks, so that they could stabilize their operations.")
+st.write("Topic: economy,financial-regulation")
+st.write("Speaker: dennis-kucinich")
+st.write("Job: U.S. representative")
+st.write("Party: democrat")
+option2 = st.selectbox(
+    'True or False',
+     ['True', 'False', "I don't know"], key="option2")
+
+'You think the statement is:', option2
+
+
+st.write("Says 57 percent of federal spending goes to the military and just 1 percent goes to food and agriculture, including food stamps.	federal-budget,military,poverty")
+st.write("Topic: federal-budget,military,poverty")
+st.write("Speaker: facebook-posts")
+st.write("Job: Social media posting")
+option1 = st.selectbox(
+    'True or False',
+     ['True', 'False', "I don't know"])
+
+'You think the statement is:', option1
+
 
 
 st.header('Understanding Fake News and How Models Distinguish Them')
