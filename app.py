@@ -87,7 +87,7 @@ option6 = st.selectbox(
      ["I don't know", 'True', 'False'], key='option6')
 
 
-fact_list=np.array(['True', 'False', 'False', 'False', 'True', 'False'])
+fact_list=np.array(['False', 'True', 'False', 'False', 'True', 'False'])
 check=st.button('check my answer', key='check')
 pred_list=np.array([option1, option2, option3, option4, option5, option6])
 if check:
