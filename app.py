@@ -25,7 +25,21 @@ nltk.download('punkt')
 stopwords=nltk.corpus.stopwords.words('english')
 
 
-st.title('Fake News Prediction')
+st.title("Learn to Predict Fake News")
+st.header("Let's start with a small test")
+st.write("Could you predict whether the following news statements are true or fake?")
+
+st.write("Says 57 percent of federal spending goes to the military and just 1 percent goes to food and agriculture, including food stamps.	federal-budget,military,poverty")
+st.write("Topic: federal-budget,military,poverty")
+st.write("Speaker: facebook-posts")
+st.write("Job: Social media posting")
+option = st.sidebar.selectbox(
+    'True or False',
+     ['True', 'False'])
+
+'You think the statement is:', option
+
+
 st.header('Understanding Fake News and How Models Distinguish Them')
 
 with open('preprocess/Introduction.txt', 'r') as f:
