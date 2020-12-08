@@ -70,20 +70,29 @@ option4 = st.selectbox(
     'True or False',
      ["I don't know", 'True', 'False'], key='option4')
 
+st.write("Ninety-seven percent of Americans do not receive subsidies for health care under the Affordable Care Act.")
+st.write("Topic: congress,government-regulation,guns,public-health,states")
+st.write("Speaker: Austin Scott")
+option5 = st.selectbox(
+    'True or False',
+     ["I don't know", 'True', 'False'], key='option5')
+
 st.write("There is no record of congresswoman Betty Sutton ... ever holding a single in-person town hall meeting open to the general public.")
 st.write("Topic: job-accomplishments")
 st.write("Speaker: Jim Renacci")
 st.write("Job: U.S. representative")
 st.write("Party: Republican")
-option5 = st.selectbox(
+option6 = st.selectbox(
     'True or False',
-     ["I don't know", 'True', 'False'], key='option5')
+     ["I don't know", 'True', 'False'], key='option6')
 
 
-fact_list=[]
+fact_list=np.array(['True', 'False', 'False', 'False', 'True', 'False'])
 check=st.button('check my answer', key='check')
-
-
+pred_list=np.array([option1, option2, option3, option4, option5, option6])
+if check:
+    st.write(f'you have got {sum(pred_list==fact_list)}/6 correct')
+    st.write('The answer is true, false, false, false, true, false')
 
 
 
