@@ -27,7 +27,7 @@ from sklearn.manifold import TSNE
 from collections import Counter
 nlp = spacy.load('en_core_web_sm')
 
-st.beta_set_page_config(
+st.set_page_config(
          page_title="Fake New Detection",
          page_icon="🗞️",
          initial_sidebar_state="collapsed",
