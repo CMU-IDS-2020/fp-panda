@@ -174,7 +174,7 @@ with col2:
 with col3:
     if check:
         st.markdown(f"""
-        <div style="font-family: Gill Sans;"><span>The answer is:</span> <span style="background-color: {assign_color(option1,'False')};">False</span>,<span style="background-color:{assign_color(option2,'True')} ;">True</span>,<span style="background-color: {assign_color(option3,'False')};">false</span></div>
+        <div style="font-family: Gill Sans;"><span>The answer is:</span> <span style="background-color: {assign_color(option1,'False')};">False</span>,<span style="background-color:{assign_color(option2,'True')} ;">True</span>,<span style="background-color: {assign_color(option3,'False')};">False</span></div>
         
      """,
         unsafe_allow_html=True,
