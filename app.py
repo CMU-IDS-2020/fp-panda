@@ -818,6 +818,7 @@ def select_df(var1, var2, subcategory, statistic_df, if_filter, n):
         return sub_df.sample(n=n, random_state=1)
     return sub_df
 
+@st.cache
 def get_statistic_df(df_train, label_values, filter, feature_sel, subject_type_sent):
     readabilty_grades, sentence_info, word_usage, sentence_beginnings=get_other_statistics(df_train, label_values, filter,feature_sel, subject_type_sent)
     statistics_type=['sentence_info', 'readabilty_grades','word_usage','sentence_beginnings']
