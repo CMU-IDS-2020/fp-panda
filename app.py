@@ -156,6 +156,15 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
     sel.columns=['kind','count']
     return sel
 
+display_type=['Absolute', 'Percentage']
+absolute=st.selectbox(
+        'Select type of values: ',
+        display_type)
+
+feature_sel=st.selectbox(
+    'Select a Meta Feature: ',
+     meta_feature)
+
 @st.cache(allow_output_mutation=True)
 def meta_feature_filtering_combined(df, top_n, kind, absolute):
     total=[]
@@ -166,33 +175,40 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
         row_name=sel.iloc[:,0]
         total.append(sel.iloc[:,1])
     total.append(row_name)
-    return pd.concat(total, axis=1)
+    total=pd.concat(total, axis=1)
+    
+    if absolute=='Percentage':
+        v=combined_table.iloc[:,-1]
+        combined_table['sum']=combined_table.sum(axis=1)
+        combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
+        combined_table
+        combined_table=combined_table.drop('sum', axis=1)
+        combined_table=combined_table[:top_n]
+        combined_table=combined_table.melt(id_vars='kind')
+        combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+    else:
+        combined_table=combined_table[:top_n]  
+        combined_table=combined_table.melt(id_vars='kind')
+        combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+    
+    return combined_table
 
-display_type=['Absolute', 'Percentage']
-
-absolute=st.selectbox(
-        'Select type of values: ',
-        display_type)
-
-feature_sel=st.selectbox(
-    'Select a Meta Feature: ',
-     meta_feature)
 
 combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
 combined_table
-if absolute=='Percentage':
-    v=combined_table.iloc[:,-1]
-    combined_table['sum']=combined_table.sum(axis=1)
-    combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
-    combined_table
-    combined_table=combined_table.drop('sum', axis=1)
-    combined_table=combined_table[:top_n]
-    combined_table=combined_table.melt(id_vars='kind')
-    combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
-else:
-    combined_table=combined_table[:top_n]  
-    combined_table=combined_table.melt(id_vars='kind')
-    combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+# if absolute=='Percentage':
+#     v=combined_table.iloc[:,-1]
+#     combined_table['sum']=combined_table.sum(axis=1)
+#     combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
+#     combined_table
+#     combined_table=combined_table.drop('sum', axis=1)
+#     combined_table=combined_table[:top_n]
+#     combined_table=combined_table.melt(id_vars='kind')
+#     combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+# else:
+#     combined_table=combined_table[:top_n]  
+#     combined_table=combined_table.melt(id_vars='kind')
+#     combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
      
 
 # if combine_labels:
