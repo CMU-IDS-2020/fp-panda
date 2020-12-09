@@ -185,16 +185,16 @@ if absolute=='Percentage':
     v=combined_table.iloc[:,-1]
     combined_table['sum']=combined_table.sum(axis=1)
     combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
+    combined_table
     combined_table=combined_table.drop('sum', axis=1)
-    # combined_table=combined_table[:top_n]    
-    combined_table=combined_table.melt(id_vars='kind')
-    combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
     combined_table=combined_table[:top_n]
-else:
-     
     combined_table=combined_table.melt(id_vars='kind')
     combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
-    combined_table=combined_table[:top_n]   
+else:
+    combined_table=combined_table[:top_n]  
+    combined_table=combined_table.melt(id_vars='kind')
+    combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+     
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
@@ -505,7 +505,14 @@ pickle_file=open('Model/lime_explainer.pkl','rb')
 text_dic=pickle.load(pickle_file)
 pickle_file.close()
 
-for stat in text_dic.keys():
-    text_dic[stat].show_in_notebook()
-   
+key1=list(text_dic.keys())[0]
+explained=text_dic[key1]
+explained_prob=sorted(explained.as_map(), key=lambda x: abs(x[1]), reverse=True)
+explained_prob=pd.DataFrame(explained_prob, columns=['str', 'weights']).reset_index()
+
+f=open('t.txt', 'r')
+t=f.readlines()
+t=' '.join(t)     
+st.markdown(t,unsafe_allow_html=True)
+
                  
