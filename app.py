@@ -118,8 +118,6 @@ def one_hot_encoding(x):
     else:
         return 'false'
     
-
-
 @st.cache(allow_output_mutation=True)
 def read_data():
     
@@ -140,7 +138,7 @@ df_train.label.value_counts()
 st.write('Example news statement from LIAR dataset')
 df_train.statement[:10]
 
-combine_labels=st.checkbox('Combined labels')
+# combine_labels=st.checkbox('Combined labels')
 
 top_n=st.slider(
     'Select the number of entries to show',
@@ -186,32 +184,33 @@ if absolute=='Percentage':
     combined_table['sum']=combined_table.sum(axis=1)
     combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
     combined_table=combined_table.drop('sum', axis=1)
+    
 combined_table=combined_table.melt(id_vars='kind')
+combined_table
+# if combine_labels:
+scatter_chart=st.altair_chart(
+    alt.Chart(combined_table, width=700).mark_bar().encode(
+        x='value:Q',
+        y=alt.Y('kind:N', sort='-x'),
+        color='variable:N'
+    ).interactive()
+)
 
-if combine_labels:
-    scatter_chart=st.altair_chart(
-        alt.Chart(combined_table, width=700).mark_bar().encode(
-            x='value:Q',
-            y=alt.Y('kind:N', sort='-x'),
-            color='variable:N'
-        ).interactive()
-    )
+# else:
+#     label_sel=st.selectbox(
+#         'Select a label value: ',
+#          label_values)
 
-else:
-    label_sel=st.selectbox(
-        'Select a label value: ',
-         label_values)
+#     # combined_table=meta_feature_filtering(df_train, top_n, label_sel, feature_sel)
+#     combined_table=combined_table.loc[combined_table.variable==label_sel]
+#     combined_table=combined_table.drop('variable', axis=1)
 
-    # combined_table=meta_feature_filtering(df_train, top_n, label_sel, feature_sel)
-    combined_table=combined_table.loc[combined_table.variable==label_sel]
-    combined_table=combined_table.drop('variable', axis=1)
-
-    scatter_chart=st.altair_chart(
-        alt.Chart(combined_table).mark_bar().encode(
-            x='value:Q',
-            y=alt.Y('kind:N', sort='-x')
-        ).interactive()
-    )
+#     scatter_chart=st.altair_chart(
+#         alt.Chart(combined_table).mark_bar().encode(
+#             x='value:Q',
+#             y=alt.Y('kind:N', sort='-x')
+#         ).interactive()
+#     )
 
 ########################### PART 2 ##############################
 
