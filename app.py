@@ -817,11 +817,18 @@ def select_df(var1, var2, subcategory, statistic_df, if_filter, n):
     if not if_filter:
         return sub_df.sample(n=n, random_state=1)
     return sub_df
-    
 
-                  
+def get_statistic_df(df_train, label_values, filter, feature_sel, subject_type_sent):
+        readabilty_grades, sentence_info, word_usage, sentence_beginnings=get_other_statistics(df_train, label_values, filter,feature_sel, subject_type_sent)
 
-filter=st.checkbox('Add filtering (if no, then n randomly selected data point will be displayed')
+         statistics_type=['sentence_info', 'readabilty_grades','word_usage','sentence_beginnings']
+         statistic_columns={'sentence_info':list(sentence_info.columns[:-1]), 'readabilty_grades': list(readabilty_grades.columns[:-1]), 
+                  'word_usage': list(word_usage.columns[:-1]), 'sentence_beginnings': list(sentence_beginnings.columns[:-1])}
+         statistic_df={'sentence_info':sentence_info, 'readabilty_grades': readabilty_grades, 
+                  'word_usage': word_usage, 'sentence_beginnings': sentence_beginnings}
+         return statistic_df
+
+filter=st.checkbox('Add filtering ')
 
 if not filter:
     n_point=st.slider('Select the number of points to display', 1, 5000, 100)
@@ -832,18 +839,17 @@ else:
          meta_feature, key='meta_feature3')
 
     top_ten_subjects=df_train[feature_sel].value_counts()[:20].index
+    subject_type=st.selectbox('Select a value for the meta feature: ', top_ten_subjects, key='value3')
+    
+statistic_df=get_statistic_df(df_train, label_values, filter, feature_sel, subject_type_sent)
 
-    subject_type=st.selectbox(
-            'Select a value for the meta feature: ',
-             top_ten_subjects, key='value3')
+# readabilty_grades, sentence_info, word_usage, sentence_beginnings=get_other_statistics(df_train, label_values, filter,feature_sel, subject_type)
 
-readabilty_grades, sentence_info, word_usage, sentence_beginnings=get_other_statistics(df_train, label_values, filter,feature_sel, subject_type_sent)
-
-statistics_type=['sentence_info', 'readabilty_grades','word_usage','sentence_beginnings']
-statistic_columns={'sentence_info':list(sentence_info.columns[:-1]), 'readabilty_grades': list(readabilty_grades.columns[:-1]), 
-                  'word_usage': list(word_usage.columns[:-1]), 'sentence_beginnings': list(sentence_beginnings.columns[:-1])}
-statistic_df={'sentence_info':sentence_info, 'readabilty_grades': readabilty_grades, 
-                  'word_usage': word_usage, 'sentence_beginnings': sentence_beginnings}
+# statistics_type=['sentence_info', 'readabilty_grades','word_usage','sentence_beginnings']
+# statistic_columns={'sentence_info':list(sentence_info.columns[:-1]), 'readabilty_grades': list(readabilty_grades.columns[:-1]), 
+#                   'word_usage': list(word_usage.columns[:-1]), 'sentence_beginnings': list(sentence_beginnings.columns[:-1])}
+# statistic_df={'sentence_info':sentence_info, 'readabilty_grades': readabilty_grades, 
+#                   'word_usage': word_usage, 'sentence_beginnings': sentence_beginnings}
                   
 # stat_type=st.selectbox('Select a text statistics for exploring', statistics_type)
 
@@ -863,10 +869,6 @@ def selectbox_with_default1(text, values, default=DEFAULT1, sidebar=False):
 def selectbox_with_default2(text, values, default=DEFAULT2, sidebar=False):
     func = st.sidebar.selectbox if sidebar else st.selectbox
     return func(text, np.insert(np.array(values, object), 0, default))
-    
-
-# var1=st.selectbox('Select first sentence information', list(name_to_var.keys()), default='number of characters per word')
-# var2=st.selectbox('Select second sentence information', list(name_to_var.keys()), default='number of words per sentence')
 
 var1=selectbox_with_default1('Select first sentence information', list(name_to_var.keys()))
 var2=selectbox_with_default2('Select first sentence information', list(name_to_var.keys()))
@@ -949,7 +951,7 @@ from lime import lime_text
 
 import streamlit.components.v1 as components
 
-news_n = st.number_input('Select a news to view the model analysis',min_value=1, max_value=20, value=10)
+news_n = st.number_input('Select a news to view the model analysis',min_value=1, max_value=25, value=14)
 
 HtmlFile = open(f"Model/html/text_{news_n}.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
