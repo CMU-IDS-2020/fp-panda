@@ -186,7 +186,7 @@ if absolute=='Percentage':
     combined_table=combined_table.drop('sum', axis=1)
     
 combined_table=combined_table.melt(id_vars='kind')
-combined_table.sort_values(by=['variable', 'kind'], inplace=True, ascending=False)
+combined_table.sort_values(by=['variable', 'kind'], inplace=True, ascending=[True, False])
 combined_table
 
 # if combine_labels:
