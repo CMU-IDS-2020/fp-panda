@@ -689,8 +689,8 @@ sid=SentimentIntensityAnalyzer()
 
 st.write("Sentiment analysis allows people to quantify and study the subjective information of a given news statement. ")
 st.write("In this section, we applied VADER (Valence Aware Dictionary and sEntiment Reasoner, a lexicon and rule-based tool in analyzing the overall sentiment distribution for fake news and true news. ") 
-st.write("We observe different distributions for sentiments when applying filters on news data. In addition to positive, negative, and neutral sentiments, the Compound score is a score that calculates the sum of all the lexicon ratings which have been normalized between -1 (most extreme negative) and +1 (most extreme positive).")
-st.write("For instance, we observe that for the topic of healthcare, for the topics on abortion, the false news is less neutral compared to the true news. ")
+st.write("In addition to positive, negative, and neutral sentiments, the Compound score is a score that calculates the sum of all the lexicon ratings which have been normalized between -1 (most extreme negative) and +1 (most extreme positive).")
+st.write("We observe different distributions for sentiments when applying filters on news data. For instance, we observe that for the news with topic on healthcare, fake news have a more positive distribution compared to true news. And for the topics on abortion, the false news is less neutral compared to the true news. ")
 
 @st.cache
 def analyze_sentiment(sentence):
