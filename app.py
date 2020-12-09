@@ -510,9 +510,16 @@ from lime import lime_text
 # explained_prob=sorted(explained.as_map(), key=lambda x: abs(x[1]), reverse=True)
 # explained_prob=pd.DataFrame(explained_prob, columns=['str', 'weights']).reset_index()
 
-f=open('Model/t.txt', 'r')
-t=f.readlines()
-t=' '.join(t)     
-st.markdown(t,unsafe_allow_html=True)
+import streamlit.components.v1 as components
+
+HtmlFile = open("t.html", 'r', encoding='utf-8')
+source_code = HtmlFile.read() 
+components.html(source_code)
+
+
+# f=open('Model/t.txt', 'r')
+# t=f.readlines()
+# t=' '.join(t)     
+# st.markdown(t,unsafe_allow_html=True)
 
                  
