@@ -159,10 +159,8 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
 @st.cache(allow_output_mutation=True)
 def meta_feature_filtering_combined(df, top_n, kind, absolute):
     total=[]
-    
     for l in label_values:
         df_sub=df_train.loc[df_train.label==l]
-#         sel=pd.DataFrame(df_sub[kind].value_counts()[:top_n]).reset_index()
         sel=pd.DataFrame(df_sub[kind].value_counts()).reset_index()
         sel.columns=['kind',f'{l}']
         row_name=sel.iloc[:,0]
@@ -181,6 +179,7 @@ feature_sel=st.selectbox(
      meta_feature)
 
 combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
+combined_table
 if absolute=='Percentage':
     v=combined_table.iloc[:,-1]
     combined_table['sum']=combined_table.sum(axis=1)
@@ -511,6 +510,11 @@ from lime import lime_text
 # explained_prob=pd.DataFrame(explained_prob, columns=['str', 'weights']).reset_index()
 
 import streamlit.components.v1 as components
+
+news_n=st.slider(
+    'Select a news to view',
+     1, 20)
+
 
 HtmlFile = open("Model/t.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
