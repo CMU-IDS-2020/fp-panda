@@ -819,14 +819,13 @@ def select_df(var1, var2, subcategory, statistic_df, if_filter, n):
     return sub_df
 
 def get_statistic_df(df_train, label_values, filter, feature_sel, subject_type_sent):
-        readabilty_grades, sentence_info, word_usage, sentence_beginnings=get_other_statistics(df_train, label_values, filter,feature_sel, subject_type_sent)
-
-         statistics_type=['sentence_info', 'readabilty_grades','word_usage','sentence_beginnings']
-         statistic_columns={'sentence_info':list(sentence_info.columns[:-1]), 'readabilty_grades': list(readabilty_grades.columns[:-1]), 
+    readabilty_grades, sentence_info, word_usage, sentence_beginnings=get_other_statistics(df_train, label_values, filter,feature_sel, subject_type_sent)
+    statistics_type=['sentence_info', 'readabilty_grades','word_usage','sentence_beginnings']
+    statistic_columns={'sentence_info':list(sentence_info.columns[:-1]), 'readabilty_grades': list(readabilty_grades.columns[:-1]), 
                   'word_usage': list(word_usage.columns[:-1]), 'sentence_beginnings': list(sentence_beginnings.columns[:-1])}
-         statistic_df={'sentence_info':sentence_info, 'readabilty_grades': readabilty_grades, 
+    statistic_df={'sentence_info':sentence_info, 'readabilty_grades': readabilty_grades, 
                   'word_usage': word_usage, 'sentence_beginnings': sentence_beginnings}
-         return statistic_df
+    return statistic_df
 
 filter=st.checkbox('Add filtering ')
 
