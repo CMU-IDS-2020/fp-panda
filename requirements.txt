@@ -14,3 +14,4 @@ sklearn
 collections
 random
 plotly
+spacy_streamlit
