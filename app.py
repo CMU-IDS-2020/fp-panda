@@ -186,12 +186,15 @@ if absolute=='Percentage':
     combined_table['sum']=combined_table.sum(axis=1)
     combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
     combined_table=combined_table.drop('sum', axis=1)
-    
-    
-# combined_table=combined_table[:top_n]    
-combined_table=combined_table.melt(id_vars='kind')
-combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
-combined_table
+    # combined_table=combined_table[:top_n]    
+    combined_table=combined_table.melt(id_vars='kind')
+    combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+    combined_table=combined_table[:top_n]
+else:
+     
+    combined_table=combined_table.melt(id_vars='kind')
+    combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+    combined_table=combined_table[:top_n]   
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
