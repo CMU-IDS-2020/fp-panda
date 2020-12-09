@@ -510,7 +510,7 @@ from lime import lime_text
 # explained_prob=sorted(explained.as_map(), key=lambda x: abs(x[1]), reverse=True)
 # explained_prob=pd.DataFrame(explained_prob, columns=['str', 'weights']).reset_index()
 
-f=open('t.txt', 'r')
+f=open('Model/t.txt', 'r')
 t=f.readlines()
 t=' '.join(t)     
 st.markdown(t,unsafe_allow_html=True)
