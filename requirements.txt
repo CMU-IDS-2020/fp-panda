@@ -9,3 +9,8 @@ lime
 torch
 pytorch_pretrained_bert
 torchvision
+spacy
+sklearn
+collections
+random
+plotly
