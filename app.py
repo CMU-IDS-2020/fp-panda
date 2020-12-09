@@ -356,7 +356,7 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     if absolute=='Percentage':
         v=combined_table.iloc[:,-1]
         combined_table['sum']=combined_table.sum(axis=1)
-        combined_table=combined_table.loc[combined_table['sum']>2]
+        combined_table=combined_table.loc[combined_table['sum']>20]
         combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
         combined_table.sort_values(by=['false','sum'], inplace=True, ascending=False)
         combined_table=combined_table.drop('sum', axis=1)
@@ -377,7 +377,7 @@ scatter_chart=st.altair_chart(
     alt.Chart(combined_table, width=700).mark_bar().encode(
         x='value:Q',
         y=alt.Y('kind:N', sort='-x'),
-        color='variable:N'
+        color='variable:N',
     ).interactive()
 )
 
