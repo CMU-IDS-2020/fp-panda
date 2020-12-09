@@ -157,7 +157,7 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
     return sel
 
 @st.cache(allow_output_mutation=True)
-def meta_feature_filtering_combined(df, top_n, kind):
+def meta_feature_filtering_combined(df, top_n, kind, absolute):
     total=[]
     
     for l in label_values:
@@ -180,16 +180,16 @@ feature_sel=st.selectbox(
     'Select a Meta Feature: ',
      meta_feature)
 
-combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel)
+combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
 if absolute=='Percentage':
     v=combined_table.iloc[:,-1]
     combined_table['sum']=combined_table.sum(axis=1)
     combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
     combined_table=combined_table.drop('sum', axis=1)
     
+    
 # combined_table=combined_table[:top_n]    
 combined_table=combined_table.melt(id_vars='kind')
-combined_table
 combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
 combined_table
 
