@@ -5,3 +5,7 @@ altair
 wordcloud
 readability
 nltk
+lime
+torch
+pytorch_pretrained_bert
+torchvision
