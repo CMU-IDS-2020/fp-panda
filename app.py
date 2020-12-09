@@ -728,7 +728,7 @@ label_sel_sent=st.selectbox(
              label_values, key='label_sel_sent')
 
 subject_type_sent=st.selectbox(
-        'Select a value for the meta feature: ',
+        'Select a feature to filter the news: ',
          top_ten_subjects,key='sent')
 sentiment_type=['compound','neg','neu','pos']
 sentiment_type_table=sentiment_for_news(df_train, label_sel_sent, feature_sel, subject_type_sent)
@@ -761,7 +761,7 @@ scatter_chart=st.altair_chart(
 
 
 ########################### PART 4 ##############################
-st.header('Other text statistics for news')
+st.header('Sentence Level Information for news')
 
 import readability
 def get_other_statistics(df, label, if_filter, meta_feature, value):
@@ -842,49 +842,57 @@ statistic_columns={'sentence_info':list(sentence_info.columns[:-1]), 'readabilty
 statistic_df={'sentence_info':sentence_info, 'readabilty_grades': readabilty_grades, 
                   'word_usage': word_usage, 'sentence_beginnings': sentence_beginnings}
 
-stat_type=st.selectbox('Select a text statistics for exploring', statistics_type)
+# stat_type=st.selectbox('Select a text statistics for exploring', statistics_type)
 
-var1=st.selectbox('Select frist metric for exploring', statistic_columns[stat_type])
-var2=st.selectbox('Select second metric for exploring', statistic_columns[stat_type])
+var_to_name={"characters_per_word": 'number of characters per word', 'characters':'number of total characters', 
+          'syll_per_word': 'number of syllables per word', 'words_per_sentence': 'number of words per sentence', 'type_token_ratio': 'type token ratio',
+         'syllables': 'number of total syllables', 'words': 'number of total words', 'wordtypes': 'number of word types',
+         'long_words': 'number of long words', 'complex_words': 'number of complex words'}
+name_to_var={v: k for k, v in var_to_name.items()}
 
-current_df=select_df(var1,var2, stat_type, statistic_df, filter, n_point)
+var1=st.selectbox('Select first sentence information', list(name_to_var.keys()))
+var2=st.selectbox('Select second sentence information', list(name_to_var.keys()))
+
+current_df=select_df(var1,var2, 'sentence_info', statistic_df, filter, n_point)
+# Configure the options common to all layers
+
 
 brush = alt.selection(type='interval')
-points = alt.Chart(current_df).mark_point().encode(
-    x='FleschReadingEase:Q',
-    y='Kincaid:Q',
-    color=alt.condition(brush, 'label:N', alt.value('lightgray'))
-).add_selection(
-    brush
+base = alt.Chart(current_df).add_selection(brush)
+
+# Configure the points
+points = base.mark_point(color='red').encode(
+    x=alt.X(f'{var1}:Q', title=''),
+    y=alt.Y(f'{var2}:Q', title=''),
+    color=alt.condition(brush, 'label', alt.value('grey'))
+)
+
+# Configure the ticks
+tick_axis = alt.Axis(labels=False, domain=False, ticks=False)
+
+x_ticks = base.mark_tick().encode(
+    alt.X(f'{var1}:Q', title=var_to_name[var1], axis=tick_axis),
+    alt.Y('label', title='', axis=tick_axis),
+    color=alt.condition(brush, 'label', alt.value('lightgrey'))
+)
+y_ticks = base.mark_tick().encode(
+    alt.X('label', title='', axis=tick_axis),
+    alt.Y(f'{var2}', title=var_to_name[var2], axis=tick_axis),
+    color=alt.condition(brush, 'label', alt.value('lightgrey'))
 )
 bars = alt.Chart(current_df).mark_bar().encode(
-    y='label:N',
+    x=alt.X('label:N',title=''),
     color='label:N',
-    x='count(label):Q'
+    y=alt.Y('count(label):Q', title='Number of News Records')
 ).transform_filter(
     brush
-)
-
-brush=alt.selection(type='interval')
-points=alt.Chart(current_df).mark_point().encode(
-    x=var1,
-    y=var2,
-    color=alt.condition(brush, 'label:N', alt.value('lightgray'))
-).add_selection(
-    brush
-)
-bars=alt.Chart(current_df).mark_bar().encode(
-    y='label:N',
-    color='label:N',
-    x='count(label):Q'
-).transform_filter(
-    brush
-)
-
+) 
 scatter_chart=st.altair_chart(
-    points&bars
+    y_ticks | (points & x_ticks) | bars 
 )
 
+##################readability score#####################
+st.header('Readability Score for news')
 
 
 
@@ -903,11 +911,12 @@ st.markdown(
 
 
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">There are have been different online fake news detector aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help people improving their ability in detecting fake news. However, there are little studies on how machine learning models actually predict the fake news and what part of a news have a greater contribution to the model decision. We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence that may cause the news to be predicted as true or fake.</p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">There are have been different online fake news detector aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help us improving our ability in detecting fake news. However, there are little studies on how machine learning models actually predict the fake news and what part of a news have a greater contribution to the model decision. We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence that may cause the news to be predicted as true or fake.</p>""",
     unsafe_allow_html=True
 
     )
-#### load from pickle of the feature importance##############
+st.write("We first trained a fake news classification model and ")
+################################ load from pickle of the feature importance ##############
 from lime import lime_text
 
 # pickle_file=open('Model/lime_explainer.pkl','rb')
@@ -921,12 +930,7 @@ from lime import lime_text
 
 import streamlit.components.v1 as components
 
-# news_n=st.slider(
-#     'Select a news to view',
-#      1, 20)
-news_n = st.number_input('Choose a news',min_value=1, max_value=20, value=1)
-
-
+news_n = st.number_input('Select a news to view the model analysis',min_value=1, max_value=20, value=10)
 
 HtmlFile = open(f"Model/html/t_{news_n}.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
