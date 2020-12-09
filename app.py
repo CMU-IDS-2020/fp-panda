@@ -469,7 +469,7 @@ scatter_chart=st.altair_chart(
 
 ########################### PART 5 ##############################
 st.header('How machine learning models distinguish fake news?')
-st.write('There are have been different online fake news detector aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help people improving their ability in detecting fake news.
+st.write('There are have been different online fake news detector aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help people improving their ability in detecting fake news.')
 st.write('However, there are little studies on how machine learning models actually predict the fake news and what part of a news have a greater contribution to the model decision. ')
 st.write('We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence that may cause the news to be predicted as true or fake. ')
 
