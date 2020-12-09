@@ -186,7 +186,7 @@ if absolute=='Percentage':
     combined_table=combined_table.drop('sum', axis=1)
     
 combined_table=combined_table.melt(id_vars='kind')
-combined_table
+combined_table.sort_values(by=['variable', 'kind'], inplace=True)
 # if combine_labels:
 scatter_chart=st.altair_chart(
     alt.Chart(combined_table, width=700).mark_bar().encode(
