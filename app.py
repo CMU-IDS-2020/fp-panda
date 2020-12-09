@@ -338,7 +338,7 @@ absolute=st.selectbox(
         display_type)
 
 feature_sel=st.selectbox(
-    'Select a Meta Feature: ',
+    'Select a feature to sort the news: ',
      meta_feature)
 
 @st.cache(allow_output_mutation=True)
@@ -626,7 +626,7 @@ def get_plot_df(t1,t2,label1,label2,embeddings_dict):
 #     return dd
 
 feature_sel=st.selectbox(
-    'Select a Meta Feature: ',
+    'Select a feature to filter news on: ',
      meta_feature, key='meta_feature2')
 
 top_ten_subjects=df_train[feature_sel].value_counts()[:20].index
@@ -639,7 +639,7 @@ col1,col2=st.beta_columns(2)
 #          label_values, key='label_sel2')
 
 subject_type1=st.selectbox(
-        'Select a value for the meta feature: ',
+        'Select a value for the feature: ',
          top_ten_subjects)
 # with col2:
 #     label_sel2=st.selectbox(
@@ -686,6 +686,12 @@ st.markdown(
 
     )
 sid=SentimentIntensityAnalyzer()
+
+st.write("Sentiment analysis allows people to quantify and study the subjective information of a given news statement. ")
+st.write("In this section, we applied VADER (Valence Aware Dictionary and sEntiment Reasoner, a lexicon and rule-based tool in analyzing the overall sentiment distribution for fake news and true news. ") 
+st.write("We observe different distributions for sentiments when applying filters on news data. In addition to positive, negative, and neutral sentiments, the Compound score is a score that calculates the sum of all the lexicon ratings which have been normalized between -1 (most extreme negative) and +1 (most extreme positive).")
+st.write("For instance, we observe that for the topic of healthcare, for the topics on abortion, the false news is less neutral compared to the true news. ")
+
 @st.cache
 def analyze_sentiment(sentence):
     score=sid.polarity_scores(sentence)
