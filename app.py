@@ -850,12 +850,14 @@ var_to_name={"characters_per_word": 'number of characters per word', 'characters
          'long_words': 'number of long words', 'complex_words': 'number of complex words'}
 name_to_var={v: k for k, v in var_to_name.items()}
 
-var1=st.selectbox('Select first sentence information', list(name_to_var.keys()))
-var2=st.selectbox('Select second sentence information', list(name_to_var.keys()))
+var1=st.selectbox('Select first sentence information', sorted(list(sname_to_var.keys())))
+var2=st.selectbox('Select second sentence information', sorted(list(name_to_var.keys())))
+
+var1=name_to_var[var1]
+var2=name_to_var[var2]
 
 current_df=select_df(var1,var2, 'sentence_info', statistic_df, filter, n_point)
 # Configure the options common to all layers
-
 
 brush = alt.selection(type='interval')
 base = alt.Chart(current_df).add_selection(brush)
