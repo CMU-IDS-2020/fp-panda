@@ -501,7 +501,7 @@ st.write('We aim to make use of interpretable machine learning techniques to hel
 import pickle
 from lime import lime_text
 
-pickle_file=open('lime_explainer.pkl','rb')
+pickle_file=open('Model/lime_explainer.pkl','rb')
 text_dic=pickle.load(pickle_file)
 pickle_file.close()
 
