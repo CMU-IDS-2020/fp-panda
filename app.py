@@ -107,15 +107,16 @@ st.header('On what subjects do people tend to lie?')
 
 columns=['id','label','statement','subject','speaker', 'job', 'state','party','barely_true_counts','false_counts',
                   'half_true_counts','mostly_true_counts','pants_on_fire_counts','context']
-label_values=['false','pants-fire','barely-true','true','mostly-true','false','half-true']
+# label_values=['false','pants-fire','barely-true','true','mostly-true','false','half-true']
+label_values=['false','true']
 meta_feature=['subject','speaker', 'job', 'state','party']
 
 
 def one_hot_encoding(x):
     if x=='true' or x=='mostly-true' or x=='half-true':
-        return True
+        return 'true'
     else:
-        return False
+        return 'false'
     
 
 
