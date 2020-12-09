@@ -514,7 +514,7 @@ import streamlit.components.v1 as components
 
 HtmlFile = open("Model/t.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
-components.html(source_code)
+components.html(source_code, width=500)
 
 
 # f=open('Model/t.txt', 'r')
