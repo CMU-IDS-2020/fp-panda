@@ -174,7 +174,7 @@ with col2:
 with col3:
     if check:
         st.markdown(f"""
-        <div style="font-family: Gill Sans;"><span>The answer is:</span> <span style="background-color: {assign_color(option1,'False')};">False</span>,<span style="background-color:{assign_color(option2,'True')} ;">True</span>,<span style="background-color: {assign_color(option3,'False')};">False</span></div>
+        <div style="font-family: Gill Sans;"><span>The answer is:</span> <span style="background-color: {assign_color(option1,'False')};">False</span>,<span style="background-color:{assign_color(option2,'True')} ;">True</span>,<span style="background-color: {assign_color(option3,'False')};">false</span></div>
         
      """,
         unsafe_allow_html=True,
@@ -328,7 +328,6 @@ top_n=st.slider(
 kind=['subject','speaker', 'job', 'state']
 def meta_feature_filtering(df, top_n, label, feature_sel):
     df_sub=df_train.loc[df_train.label==label]
-#     sel=pd.DataFrame(df_sub[feature_sel].value_counts()[:top_n]).reset_index()
     sel=pd.DataFrame(df_sub[feature_sel].value_counts()).reset_index()
     sel.columns=['kind','count']
     return sel
@@ -357,36 +356,21 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     if absolute=='Percentage':
         v=combined_table.iloc[:,-1]
         combined_table['sum']=combined_table.sum(axis=1)
+        combined_table=combined_table.loc[combined_table['sum']>2]
         combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
+        combined_table.sort_values(by=['false','sum'], inplace=True, ascending=False)
         combined_table=combined_table.drop('sum', axis=1)
-        combined_table.sort_values(by=['false'], inplace=True, ascending=False)
         combined_table=combined_table[:top_n]
         combined_table=combined_table.melt(id_vars='kind')
         # combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
     else:
         combined_table=combined_table[:top_n]  
         combined_table=combined_table.melt(id_vars='kind')
-#         combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
     
     return combined_table
 
 
 combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
-# combined_table
-# if absolute=='Percentage':
-#     v=combined_table.iloc[:,-1]
-#     combined_table['sum']=combined_table.sum(axis=1)
-#     combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
-#     combined_table
-#     combined_table=combined_table.drop('sum', axis=1)
-#     combined_table=combined_table[:top_n]
-#     combined_table=combined_table.melt(id_vars='kind')
-#     combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
-# else:
-#     combined_table=combined_table[:top_n]  
-#     combined_table=combined_table.melt(id_vars='kind')
-#     combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
-     
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
