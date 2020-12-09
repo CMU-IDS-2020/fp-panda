@@ -512,7 +512,7 @@ from lime import lime_text
 
 import streamlit.components.v1 as components
 
-HtmlFile = open("t.html", 'r', encoding='utf-8')
+HtmlFile = open("Model/t.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
 components.html(source_code)
 
