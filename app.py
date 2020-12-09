@@ -175,7 +175,7 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
         row_name=sel.iloc[:,0]
         total.append(sel.iloc[:,1])
     total.append(row_name)
-    total=pd.concat(total, axis=1)
+    combined_table=pd.concat(total, axis=1)
     
     if absolute=='Percentage':
         v=combined_table.iloc[:,-1]
@@ -189,7 +189,7 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     else:
         combined_table=combined_table[:top_n]  
         combined_table=combined_table.melt(id_vars='kind')
-        combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+#         combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
     
     return combined_table
 
