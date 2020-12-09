@@ -359,9 +359,10 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
         combined_table['sum']=combined_table.sum(axis=1)
         combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
         combined_table=combined_table.drop('sum', axis=1)
+        combined_table.sort_values(by=['false'], inplace=True, ascending=False)
         combined_table=combined_table[:top_n]
         combined_table=combined_table.melt(id_vars='kind')
-        combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
+        # combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
     else:
         combined_table=combined_table[:top_n]  
         combined_table=combined_table.melt(id_vars='kind')
@@ -371,7 +372,7 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
 
 
 combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
-combined_table
+# combined_table
 # if absolute=='Percentage':
 #     v=combined_table.iloc[:,-1]
 #     combined_table['sum']=combined_table.sum(axis=1)
