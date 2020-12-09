@@ -850,9 +850,23 @@ var_to_name={"characters_per_word": 'number of characters per word', 'characters
          'long_words': 'number of long words', 'complex_words': 'number of complex words'}
 name_to_var={v: k for k, v in var_to_name.items()}
 
-var1=st.selectbox('Select first sentence information', list(name_to_var.keys()), default='number of characters per word')
-var2=st.selectbox('Select second sentence information', list(name_to_var.keys()), default='number of words per sentence')
+DEFAULT1='number of characters per word'
+DEFAULT2='number of words per sentence'
 
+def selectbox_with_default1(text, values, default=DEFAULT1, sidebar=False):
+    func = st.sidebar.selectbox if sidebar else st.selectbox
+    return func(text, np.insert(np.array(values, object), 0, default))
+    
+def selectbox_with_default2(text, values, default=DEFAULT2, sidebar=False):
+    func = st.sidebar.selectbox if sidebar else st.selectbox
+    return func(text, np.insert(np.array(values, object), 0, default))
+    
+
+# var1=st.selectbox('Select first sentence information', list(name_to_var.keys()), default='number of characters per word')
+# var2=st.selectbox('Select second sentence information', list(name_to_var.keys()), default='number of words per sentence')
+
+var1=selectbox_with_default1('Select first sentence information', list(name_to_var.keys()))
+var2=selectbox_with_default2('Select first sentence information', list(name_to_var.keys()))
 var1=name_to_var[var1]
 var2=name_to_var[var2]
 
