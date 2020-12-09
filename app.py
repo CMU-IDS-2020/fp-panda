@@ -494,3 +494,15 @@ st.write('There are have been different online fake news detector aiming to help
 st.write('However, there are little studies on how machine learning models actually predict the fake news and what part of a news have a greater contribution to the model decision. ')
 st.write('We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence that may cause the news to be predicted as true or fake. ')
 
+#### load from pickle of the feature importance##############
+import pickle
+from lime import lime_text
+
+pickle_file=open('lime_explainer.pkl','rb')
+text_dic=pickle.load(pickle_file)
+pickle_file.close()
+
+for stat in text_dic.keys():
+    text_dic[stat].show_in_notebook()
+   
+                 
