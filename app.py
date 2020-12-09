@@ -125,9 +125,9 @@ def read_data():
     df_test=pd.read_csv('liar_dataset/test.tsv', delimiter='\t', header=None, names=columns)
     df_valid=pd.read_csv('liar_dataset/valid.tsv', delimiter='\t', header=None, names=columns)
     df_total=pd.concat([df_train, df_test, df_valid]).reset_index(drop=True)
-    df_train['label']=df_total.label.apply(lambda x: one_hot_encoding(x))
-    df_test['label']=df_total.label.apply(lambda x: one_hot_encoding(x))
-    df_valid['label']=df_total.label.apply(lambda x: one_hot_encoding(x))
+    df_train['label']=df_train.label.apply(lambda x: one_hot_encoding(x))
+    df_test['label']=df_test.label.apply(lambda x: one_hot_encoding(x))
+    df_valid['label']=df_valid.label.apply(lambda x: one_hot_encoding(x))
     df_total['label']=df_total.label.apply(lambda x: one_hot_encoding(x))
     return df_train, df_test, df_valid, df_total
 
