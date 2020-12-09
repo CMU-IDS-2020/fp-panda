@@ -930,10 +930,10 @@ from lime import lime_text
 
 import streamlit.components.v1 as components
 
-news_n=st.slider(
-    'Select a news to view',
-     1, 20)
-number = st.number_input('Choose a news',min_value=1, max_value=20, value=1)
+# news_n=st.slider(
+#     'Select a news to view',
+#      1, 20)
+news_n = st.number_input('Choose a news',min_value=1, max_value=20, value=1)
 
 
 
