@@ -817,8 +817,11 @@ def select_df(var1, var2, subcategory, statistic_df, if_filter, n):
     if not if_filter:
         return sub_df.sample(n=n, random_state=1)
     return sub_df
+    
 
-filter=st.checkbox('Adding filtering criteria for the data, if no criteria, then n randomly selected data point will be displayed')
+                  
+
+filter=st.checkbox('Add filtering (if no, then n randomly selected data point will be displayed')
 
 if not filter:
     n_point=st.slider('Select the number of points to display', 1, 5000, 100)
@@ -841,7 +844,7 @@ statistic_columns={'sentence_info':list(sentence_info.columns[:-1]), 'readabilty
                   'word_usage': list(word_usage.columns[:-1]), 'sentence_beginnings': list(sentence_beginnings.columns[:-1])}
 statistic_df={'sentence_info':sentence_info, 'readabilty_grades': readabilty_grades, 
                   'word_usage': word_usage, 'sentence_beginnings': sentence_beginnings}
-
+                  
 # stat_type=st.selectbox('Select a text statistics for exploring', statistics_type)
 
 var_to_name={"characters_per_word": 'number of characters per word', 'characters':'number of total characters', 
