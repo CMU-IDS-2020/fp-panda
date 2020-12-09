@@ -151,7 +151,8 @@ top_n=st.slider(
 kind=['subject','speaker', 'job', 'state']
 def meta_feature_filtering(df, top_n, label, feature_sel):
     df_sub=df_train.loc[df_train.label==label]
-    sel=pd.DataFrame(df_sub[feature_sel].value_counts()[:top_n]).reset_index()
+#     sel=pd.DataFrame(df_sub[feature_sel].value_counts()[:top_n]).reset_index()
+    sel=pd.DataFrame(df_sub[feature_sel].value_counts()).reset_index()
     sel.columns=['kind','count']
     return sel
 
@@ -161,7 +162,8 @@ def meta_feature_filtering_combined(df, top_n, kind):
     
     for l in label_values:
         df_sub=df_train.loc[df_train.label==l]
-        sel=pd.DataFrame(df_sub[kind].value_counts()[:top_n]).reset_index()
+#         sel=pd.DataFrame(df_sub[kind].value_counts()[:top_n]).reset_index()
+        sel=pd.DataFrame(df_sub[kind].value_counts()).reset_index()
         sel.columns=['kind',f'{l}']
         row_name=sel.iloc[:,0]
         total.append(sel.iloc[:,1])
@@ -185,7 +187,9 @@ if absolute=='Percentage':
     combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
     combined_table=combined_table.drop('sum', axis=1)
     
+# combined_table=combined_table[:top_n]    
 combined_table=combined_table.melt(id_vars='kind')
+combined_table
 combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
 combined_table
 
