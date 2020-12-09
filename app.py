@@ -933,11 +933,11 @@ import streamlit.components.v1 as components
 news_n=st.slider(
     'Select a news to view',
      1, 20)
-number = st.number_input('Choose a news',min_value=None, max_value=None, value=1)
+number = st.number_input('Choose a news',min_value=1, max_value=20, value=1)
 
 
 
-HtmlFile = open("Model/t.html", 'r', encoding='utf-8')
+HtmlFile = open(f"Model/html/t_{news_n}.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
 components.html(source_code, height=600)
 
