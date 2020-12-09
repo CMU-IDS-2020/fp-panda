@@ -155,7 +155,7 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
     sel.columns=['kind','count']
     return sel
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def meta_feature_filtering_combined(df, top_n, kind):
     total=[]
     
