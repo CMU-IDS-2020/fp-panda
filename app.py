@@ -821,7 +821,7 @@ def select_df(var1, var2, subcategory, statistic_df, if_filter, n):
 filter=st.checkbox('Adding filtering criteria for the data, if no criteria, then n randomly selected data point will be displayed')
 
 if not filter:
-    n_point=st.slider('Select the number of points to display', 1, 5000)
+    n_point=st.slider('Select the number of points to display', 1, 5000, 100)
 else:
     n_point=500
     feature_sel=st.selectbox(
@@ -850,8 +850,8 @@ var_to_name={"characters_per_word": 'number of characters per word', 'characters
          'long_words': 'number of long words', 'complex_words': 'number of complex words'}
 name_to_var={v: k for k, v in var_to_name.items()}
 
-var1=st.selectbox('Select first sentence information', sorted(list(name_to_var.keys())))
-var2=st.selectbox('Select second sentence information', sorted(list(name_to_var.keys())))
+var1=st.selectbox('Select first sentence information', sorted(list(name_to_var.keys())), 'number of characters per word')
+var2=st.selectbox('Select second sentence information', sorted(list(name_to_var.keys())), 'number of words per sentence')
 
 var1=name_to_var[var1]
 var2=name_to_var[var2]
