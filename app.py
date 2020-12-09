@@ -135,7 +135,7 @@ def read_data():
 
 df_train, df_test, df_valid, df_total=read_data()
 
-df_total
+df_train.label.value_counts()
 
 st.write('Example news statement from LIAR dataset')
 df_train.statement[:10]
