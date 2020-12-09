@@ -501,14 +501,14 @@ st.write('We aim to make use of interpretable machine learning techniques to hel
 import pickle
 from lime import lime_text
 
-pickle_file=open('Model/lime_explainer.pkl','rb')
-text_dic=pickle.load(pickle_file)
-pickle_file.close()
+# pickle_file=open('Model/lime_explainer.pkl','rb')
+# text_dic=pickle.load(pickle_file)
+# pickle_file.close()
 
-key1=list(text_dic.keys())[0]
-explained=text_dic[key1]
-explained_prob=sorted(explained.as_map(), key=lambda x: abs(x[1]), reverse=True)
-explained_prob=pd.DataFrame(explained_prob, columns=['str', 'weights']).reset_index()
+# key1=list(text_dic.keys())[0]
+# explained=text_dic[key1]
+# explained_prob=sorted(explained.as_map(), key=lambda x: abs(x[1]), reverse=True)
+# explained_prob=pd.DataFrame(explained_prob, columns=['str', 'weights']).reset_index()
 
 f=open('t.txt', 'r')
 t=f.readlines()
