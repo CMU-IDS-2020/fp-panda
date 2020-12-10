@@ -729,7 +729,7 @@ st.markdown(
     
     
 st.markdown(
-    """ <p style="font-family: Gill Sans; font-weight: 200; text-align:justify">We further examined the sentence level information for news, including number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type token ratio (number of unique words to number of total words)</p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">We further examined the sentence level information for news, including number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type token ratio (number of unique words to number of total words). Overall, there seems to be no obvious differences between fake news and true news on those features in our dataset. However, when we apply filter on the dataset, we found that for different speakers, for instance, sentence level features will be different for fake news and true news. If we filter dataset with speaker as Donald Trump, we will see that the number of complex words in a statement will be larger for fake news than for true news. </p>""",
     unsafe_allow_html=True
 
     )
@@ -899,7 +899,13 @@ st.markdown(
     unsafe_allow_html=True
 
     )
-st.write("We first trained a fake news classification model with BERT as base model on the news statements from LIAR dataset. We then applied lime as interpretation tool to analyze which words in the sentence play important roles for the final prediction ")
+    
+st.markdown(
+    """ <p style="font-family: Gill Sans; text-align:justify">We first trained a fake news classification model with BERT as base model on the news statements from LIAR dataset. We then applied lime as interpretation tool to analyze which words in the sentence play important roles for the final prediction .</p>""",
+    unsafe_allow_html=True
+
+    )
+
 ################################ load from pickle of the feature importance ##############
 from lime import lime_text
 
