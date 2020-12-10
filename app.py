@@ -335,7 +335,7 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
 display_type=['Absolute', 'Percentage']
 
 col1,col2=st.beta_columns(2)
-with co1:
+with col1:
          absolute=st.selectbox(
                  'Select type of values: ',
                  display_type)
