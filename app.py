@@ -804,8 +804,19 @@ scatter_chart=st.altair_chart(
 
 
 ########################### PART 4 ##############################
-st.header('Sentence Level Information for news')
-st.write('We further examined the sentence level information for news, including number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type token ratio (number of unique words to number of total words).')
+st.markdown(
+    """ <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Sentence Level Information for news</h2>""",
+    unsafe_allow_html=True
+
+    )
+    
+    
+st.markdown(
+    """ <p style="font-family: Gill Sans; font-weight: 200; text-align:justify">We further examined the sentence level information for news, including number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type token ratio (number of unique words to number of total words)</p>""",
+    unsafe_allow_html=True
+
+    )
+
 
 import readability
 def get_other_statistics(df, label, if_filter, meta_feature, value):
