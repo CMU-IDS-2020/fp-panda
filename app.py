@@ -931,7 +931,7 @@ st.markdown(
     unsafe_allow_html=True
 
     )
-st.write("We first trained a fake news classification model and ")
+st.write("We first trained a fake news classification model with BERT as base model on the news statements from LIAR dataset. We then applied lime as interpretation tool to analyze which words in the sentence play important roles for the final prediction ")
 ################################ load from pickle of the feature importance ##############
 from lime import lime_text
 
@@ -950,7 +950,7 @@ news_n = st.number_input('Select a news to view the model analysis',min_value=1,
 
 HtmlFile = open(f"Model/html/text_{news_n}.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
-components.html(source_code, height=600)
+components.html(source_code, height=400)
 
 
 # f=open('Model/t.txt', 'r')
