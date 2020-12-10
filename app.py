@@ -40,12 +40,6 @@ nltk.download('wordnet')
 nltk.download('punkt')
 stopwords=nltk.corpus.stopwords.words('english')
 
-
-# st.title("Learn to Predict Fake News")
-# st.header("Let's start with a small test")
-# st.subheader("Could you correctly predict whether the following news statements are true or fake?")
-
-
 st.markdown(
     f"""
         <h1 style="font-family: Gill Sans; font-weight: 700; font-size: 48px;">Learn to Predict Fake News</h1>
@@ -97,19 +91,6 @@ with st.beta_expander("See More Details"):
      """,
         unsafe_allow_html=True,
         )
-
-
-
-
-# st.write("Says 57 percent of federal spending goes to the military and just 1 percent goes to food and agriculture, including food stamps.	federal-budget,military,poverty")
-# st.write("Topic: federal-budget,military,poverty")
-# st.write("Speaker: facebook-posts")
-# st.write("Job: Social media posting")
-# option1 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key="option1")
-
-# 'You think the statement is:', option1
 
 option1 = st.selectbox(
     'True or False',
@@ -197,67 +178,6 @@ Ability to identify fake news and understand their characteristics are criticall
         unsafe_allow_html=True,
         )
 
-# st.write("The Fed created $1.2 trillion out of nothing, gave it to banks, and some of them foreign banks, so that they could stabilize their operations.")
-# st.write("Topic: economy,financial-regulation")
-# st.write("Speaker: dennis-kucinich")
-# st.write("Job: U.S. representative")
-# st.write("Party: democrat")
-# option2 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key="option2")
-
-# 'You think the statement is:', option2
-
-
-# st.write("Says President Barack Obama told a room of students, Children, every time I clap my hands together, a child in America dies from gun violence, and then a child told him he could solve the problem by not clapping any more.")
-# st.write("Topic: guns")
-# st.write("Speaker: chain-email")
-# option3 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key='option3')
-
-# 'You think the statement is:', option3
-
-
-# st.write("Says Hillary Clinton wants to go to a single-payer plan for health care")
-# st.write("Topic: health-care")
-# st.write("Speaker: Donald Trump")
-# st.write('Job: President-Elect')
-# option4 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key='option4')
-
-# st.write("Ninety-seven percent of Americans do not receive subsidies for health care under the Affordable Care Act.")
-# st.write("Topic: congress,government-regulation,guns,public-health,states")
-# st.write("Speaker: Austin Scott")
-# option5 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key='option5')
-
-# st.write("There is no record of congresswoman Betty Sutton ... ever holding a single in-person town hall meeting open to the general public.")
-# st.write("Topic: job-accomplishments")
-# st.write("Speaker: Jim Renacci")
-# st.write("Job: U.S. representative")
-# st.write("Party: Republican")
-# option6 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key='option6')
-
-
-# fact_list=np.array(['False', 'True', 'False', 'False', 'True', 'False'])
-# check=st.button('check my answer', key='check')
-# pred_list=np.array([option1, option2, option3, option4, option5, option6])
-# if check:
-#     st.write(f'you have got {sum(pred_list==fact_list)}/6 correct')
-#     st.write('The answer is true, false, false, false, true, false')
-
-
-
-# st.header('Understanding Fake News and How Models Distinguish Them')
-
-# with open('preprocess/Introduction.txt', 'r') as f:
-#     intro_text=f.readlines()[0]
-
 # st.write(intro_text)
 # st.header('On what subjects do people tend to lie?')
 st.markdown(
@@ -321,10 +241,6 @@ top_n=st.slider(
     'Select the number of entries to show',
      1, 20,7)
 
-# label_sel=st.selectbox(
-#     'Select a label value: ',
-#      label_values)
-
 kind=['subject','speaker', 'job', 'state']
 def meta_feature_filtering(df, top_n, label, feature_sel):
     df_sub=df_train.loc[df_train.label==label]
@@ -370,8 +286,11 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     
     return combined_table
 
+df_train.loc[df_train.speaker=='hillary-clinton']
 
 combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
+combined_table
+
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
@@ -960,38 +879,11 @@ components.html(source_code, height=400)
 # t=' '.join(t)     
 # st.markdown(t,unsafe_allow_html=True)
 
+st.subheader('Summary')
 
-st.markdown(
-        f'''
-    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Summary</h2>
-    ''',
-        unsafe_allow_html=True,
-    )
-    
-st.markdown(
-    """<p style="font-family: Gill Sans; text-align:justify">Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.</p>""",
-    unsafe_allow_html=True
+st.write('Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.')
+st.write('People are susceptable to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news. ')
+st.write('In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. ')
+st.write('Additionally, as many existing fake news detectors have achieved satisfatory results on fake news detection, we also trained a fake news classification model based on BERT and apply interpretable machine learning techniques to learn how machine learning models distinguish between fake news and true news. We visualize words in sentence that contributes to the model decision with hope that this will also help us improve our ability in spoting and identifying fake news. ')
+st.write("The language of fake news is just as important as the source of the news. In real life, news coming from authority may be trustworthy, however, it is also possible that people lie about things in order to affect people's attributes and beliefs. ")
 
-    )
-    
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">People are susceptable to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news. </p>""",
-    unsafe_allow_html=True
-
-    )
-    
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. </p>""",
-    unsafe_allow_html=True
-
-    )
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">Additionally, as many existing fake news detectors have achieved satisfatory results on fake news detection, we also trained a fake news classification model based on BERT and apply interpretable machine learning techniques to learn how machine learning models distinguish between fake news and true news. We visualize words in sentence that contributes to the model decision with hope that this will also help us improve our ability in spoting and identifying fake news.</p>""",
- unsafe_allow_html=True
-
-    )
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">The language of fake news is just as important as the source of the news. In real life, news coming from authority may be trustworthy, however, it is also possible that people lie about things in order to affect people's attributes and beliefs. </p>""",
-    unsafe_allow_html=True
-
-    )
