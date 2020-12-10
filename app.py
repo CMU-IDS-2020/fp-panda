@@ -40,12 +40,6 @@ nltk.download('wordnet')
 nltk.download('punkt')
 stopwords=nltk.corpus.stopwords.words('english')
 
-
-# st.title("Learn to Predict Fake News")
-# st.header("Let's start with a small test")
-# st.subheader("Could you correctly predict whether the following news statements are true or fake?")
-
-
 st.markdown(
     f"""
         <h1 style="font-family: Gill Sans; font-weight: 700; font-size: 48px;">Learn to Predict Fake News</h1>
@@ -310,7 +304,7 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
 
 
 combined_table_bar=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
-combined_table_bar.shape()
+combined_table_bar.shape
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
@@ -845,7 +839,7 @@ var2=name_to_var[var2]
 
 
 current_df=select_df(var1,var2, 'sentence_info', statistic_df, filter, n_point)
-current_df.shape()
+current_df.shape
 # Configure the options common to all layers
 
 brush = alt.selection(type='interval')
