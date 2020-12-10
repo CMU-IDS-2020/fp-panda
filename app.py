@@ -504,8 +504,11 @@ st.markdown(
 st.markdown(
     """ <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Word Frequency for news with different topics</h2>""",
     unsafe_allow_html=True
-
     )
+    
+st.write('''
+Word frequency for different types of news allow us to identify what words are likely to appear in fake news. By looking at news with different subjects, speakers, jobs, party, and state, we could learn about words that show up in the fake news. For instance, if we use subject as a filter and select news about crimes, we see that the word “gun” is likely to appear in fake news. Similarly, if we select news that are spoken by Donald Trump, we see the words “Clinton", “war", “bill” and “Iraq” appear very often. 
+''')
 def text_lowercase(text): 
     return text.lower() 
 
