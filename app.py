@@ -924,7 +924,7 @@ from lime import lime_text
 
 import streamlit.components.v1 as components
 
-news_n = st.number_input('Select a news to view the model analysis',min_value=1, max_value=25, value=14)
+news_n = st.number_input('Select a news to view the model analysis',min_value=1, max_value=25, value=2)
 
 HtmlFile = open(f"Model/html/text_{news_n}.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
