@@ -292,20 +292,17 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
         combined_table=combined_table[:top_n]
         combined_table=combined_table.melt(id_vars=kind)
     else:
-        combined_table=combined_table[:top_n]  
+        combined_table=combined_table[:top_n]
         combined_table=combined_table.melt(id_vars=kind)
-    return combined_table
+        
+    x1=combined_table.loc[combined_table.variable=='false']
+    return combined_table, x1
 
 
-combined_table_bar=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
+combined_table_bar, x1=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
-    # alt.Chart(combined_table_bar, width=700).mark_bar().encode(
-    #     x='value:Q',
-    #     y=alt.Y('kind:N', sort='-x'),
-    #     color='variable:N',
-    # ).interactive()
     alt.Chart(combined_table_bar, width=700, title=f"Top {kind} with highest number of fake news ({absolute})").mark_bar().encode(
          x='value:Q',
          y=alt.Y(f'{kind}:N', sort=list(x1[kind])),
