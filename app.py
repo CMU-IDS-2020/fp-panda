@@ -962,7 +962,7 @@ st.markdown(
 
     )
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">Additionally, as many existing fake news detectors have achieved satisfatory results on fake news detection, we also trained a fake news classification model based on BERT and apply interpretable machine learning techniques to learn how machine learning models distinguish between fake news and true news. We visualize words in sentence that contributes to the model decision with hope that this will also help us improve our ability in spoting and identifying fake news.</p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">Additionally, as many existing fake news detectors have achieved satisfactory results on fake news detection, we choose the BERT to train and used as our prediction model. We also applied the LIME framework, Local interpretable model-agnostic explanations, provided by the package lime to learn how the machine learning model distinguish between fake news and true news. We visualized words in the sentence that contributes to the model decision with the hope that this will also help us improve our ability in spotting and identifying fake news.</p>""",
  unsafe_allow_html=True,
 
     )
