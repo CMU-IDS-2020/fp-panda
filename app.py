@@ -333,13 +333,16 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
     return sel
 
 display_type=['Absolute', 'Percentage']
-absolute=st.selectbox(
-        'Select type of values: ',
-        display_type)
 
-feature_sel=st.selectbox(
-    'Select a feature to sort the news: ',
-     meta_feature)
+col1,col2=st.beta_columns(2)
+with co1:
+         absolute=st.selectbox(
+                 'Select type of values: ',
+                 display_type)
+with col2:
+         feature_sel=st.selectbox(
+             'Select a feature to sort the news: ',
+              meta_feature)
 
 @st.cache(allow_output_mutation=True)
 def meta_feature_filtering_combined(df, top_n, kind, absolute):
