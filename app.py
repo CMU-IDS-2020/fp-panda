@@ -957,7 +957,7 @@ st.markdown(
     )
     
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. </p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. Furthermore, we also find several interesting findings. The first one is the source of the news, namely the speaker, the job of the speaker are important to identify fake news. The intent is also a very important factor, for example, the election-related or geopolitical-related fake news is higher than other, this news is intended to capture people's attention and change people's opinion. Thirdly, as opposed to fake news, the true news covers more topics within the same subject, whereas fake news is more target-oriented. Lastly, we also find that fake news used words more exaggerated than true news, such word 'billion' use a lot in fake news, whereas in true news 'million' is more used.</p>""",
     unsafe_allow_html=True,
 
     )
