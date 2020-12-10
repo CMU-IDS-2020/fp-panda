@@ -853,12 +853,12 @@ var_to_name={"characters_per_word": 'average characters per word', 'characters':
          'long_words': 'number of long words', 'complex_words': 'number of complex words'}
 name_to_var={v: k for k, v in var_to_name.items()}
 
-DEFAULT1='number of characters per word'
-DEFAULT2='number of words per sentence'
+DEFAULT1='average characters per word'
+DEFAULT2='average words per sentence'
 
 def selectbox_with_default1(text, values, default=DEFAULT1, sidebar=False):
     func = st.sidebar.selectbox if sidebar else st.selectbox
-    return func(text, np.insert(np.array(values, object), 0, default))
+    return func(text)
     
 def selectbox_with_default2(text, values, default=DEFAULT2, sidebar=False):
     func = st.sidebar.selectbox if sidebar else st.selectbox
