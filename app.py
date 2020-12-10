@@ -27,7 +27,7 @@ from sklearn.manifold import TSNE
 from collections import Counter
 nlp = spacy.load('en_core_web_sm')
 
-st.beta_set_page_config(
+st.set_page_config(
          page_title="Fake New Detection",
          page_icon="🗞️",
          initial_sidebar_state="collapsed",
@@ -333,16 +333,13 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
     return sel
 
 display_type=['Absolute', 'Percentage']
+absolute=st.selectbox(
+        'Select type of values: ',
+        display_type)
 
-col1,col2=st.beta_columns(2)
-with col1:
-         absolute=st.selectbox(
-                 'Select type of values: ',
-                 display_type)
-with col2:
-         feature_sel=st.selectbox(
-             'Select a feature to sort the news: ',
-              meta_feature)
+feature_sel=st.selectbox(
+    'Select a feature to sort the news: ',
+     meta_feature)
 
 @st.cache(allow_output_mutation=True)
 def meta_feature_filtering_combined(df, top_n, kind, absolute):
@@ -361,6 +358,7 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
         combined_table['sum']=combined_table.sum(axis=1)
         combined_table=combined_table.loc[combined_table['sum']>20]
         combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
+        combined_table
         combined_table.sort_values(by=['false','sum'], inplace=True, ascending=False)
         combined_table=combined_table.drop('sum', axis=1)
         combined_table=combined_table[:top_n]
@@ -509,32 +507,10 @@ st.markdown(
     unsafe_allow_html=True
     )
     
-st.markdown(
-
-    f'''<p style="text-align:justify;font-family:Gill Sans;">
-In this section, we will explore the frequent words and words group used in each type of news base on their categories. Here we first extracted the most frequent words for both fack and true news and then extracted the word vector through mapping it with the GloVe embedding. Them we applied TSNE to reduce the dimensionality to 2 so that we can easily measure the similarity between words in a 2D space. </p>
-
-    ''',
- unsafe_allow_html=True,
-    )
-
-st.markdown(
-
-    f'''<p style="text-align:justify;font-family:Gill Sans;">Word frequency for different types of news allow us to identify what words are likely to appear in fake news. By looking at news with different subjects, speakers, jobs, party, and state, we could learn about words that show up in the fake news. For instance, if we use subject as a filter and select news about crimes, we see that the word “gun” is likely to appear in fake news. Similarly, if we select news that are spoken by Donald Trump, we see the words “Clinton", “war", “bill” and “Iraq” appear very often. Moreover, from the bubble plot, we can see that the frequent words used in the fake news are relatively denser than the true news. For example independent-party, healthcare-subject, presidential-candidate-job.  Such findings are intuitive, where the true news covers a wide range of topics while the fake news only focusing on some of those that are hard to validate.</p>
-
-
-    ''',
- unsafe_allow_html=True,
-    )
-# st.write("(Click on true or false label to remove it from the plot)")
-st.markdown(
-
-    f'''<div style="text-align:justify;font-family:Gill Sans;color:#fc031c;"><li>Click on true or false label in legend to remove it from the plot</li></div>
-
-
-    ''',
- unsafe_allow_html=True,
-    )
+st.write('''
+Word frequency for different types of news allow us to identify what words are likely to appear in fake news. By looking at news with different subjects, speakers, jobs, party, and state, we could learn about words that show up in the fake news. For instance, if we use subject as a filter and select news about crimes, we see that the word “gun” is likely to appear in fake news. Similarly, if we select news that are spoken by Donald Trump, we see the words “Clinton", “war", “bill” and “Iraq” appear very often. 
+''')
+st.write("(Click on true or false label to remove it from the plot)")
 
 def text_lowercase(text): 
     return text.lower() 
@@ -696,16 +672,16 @@ st.plotly_chart(fig,width=20, height=400)
 #                  text="word" ,log_x=True, size_max=60)
 # st.plotly_chart(fig,width=50, height=400)
 
-# try:
-#     fig=plt.figure(figsize=(10, 5))
-#     wordcloud=WordCloud(stopwords=stopwords, background_color="white").generate(total_text)
-#     # print(WordCloud(stopwords=stopwords).process_text(total_text))
-#     plt.imshow(wordcloud, interpolation='bilinear')
-#     plt.axis("off")
-#     plt.show()
-#     st.pyplot(fig)
-# except:
-#     st.write('No news found in the database, please try other selection criteria')
+try:
+    fig=plt.figure(figsize=(10, 5))
+    wordcloud=WordCloud(stopwords=stopwords, background_color="white").generate(total_text)
+    # print(WordCloud(stopwords=stopwords).process_text(total_text))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    plt.show()
+    st.pyplot(fig)
+except:
+    st.write('No news found in the database, please try other selection criteria')
 
 
 ########################### PART 3 ##############################
@@ -717,27 +693,10 @@ st.markdown(
     )
 sid=SentimentIntensityAnalyzer()
 
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify;">Sentiment analysis allows people to quantify and study the subjective information of a given news statement. </p>""",
-    unsafe_allow_html=True
-
-    )
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify;">In this section, we applied VADER (Valence Aware Dictionary and sEntiment Reasoner, a lexicon and rule-based tool in analyzing the overall sentiment distribution for fake news and true news. </p>""",
-    unsafe_allow_html=True
-
-    )
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify;">In addition to positive, negative, and neutral sentiments, the Compound score is a score that calculates the sum of all the lexicon ratings which have been normalized between -1 (most extreme negative) and +1 (most extreme positive).</p>""",
-    unsafe_allow_html=True
-
-    )
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify;">We observe different distributions for sentiments when applying filters on news data. For instance, we observe that for the news with topic on healthcare, fake news have a more positive distribution compared to true news. And for the topics on abortion, the false news is less neutral compared to the true news. </p>""",
-    unsafe_allow_html=True
-
-    )
-
+st.write("Sentiment analysis allows people to quantify and study the subjective information of a given news statement. ")
+st.write("In this section, we applied VADER (Valence Aware Dictionary and sEntiment Reasoner, a lexicon and rule-based tool in analyzing the overall sentiment distribution for fake news and true news. ") 
+st.write("In addition to positive, negative, and neutral sentiments, the Compound score is a score that calculates the sum of all the lexicon ratings which have been normalized between -1 (most extreme negative) and +1 (most extreme positive).")
+st.write("We observe different distributions for sentiments when applying filters on news data. For instance, we observe that for the news with topic on healthcare, fake news have a more positive distribution compared to true news. And for the topics on abortion, the false news is less neutral compared to the true news. ")
 
 @st.cache
 def analyze_sentiment(sentence):
@@ -808,13 +767,8 @@ scatter_chart=st.altair_chart(
 
 
 ########################### PART 4 ##############################
-
-
-st.markdown(
-    """ <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Sentence Level Information for news</h2>""",
-    unsafe_allow_html=True
-
-    )
+st.header('Sentence Level Information for news')
+st.write('We further examined the sentence level information for news, including number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type token ratio (number of unique words to number of total words).')
 
 import readability
 def get_other_statistics(df, label, if_filter, meta_feature, value):
@@ -895,14 +849,14 @@ else:
     subject_type=st.selectbox('Select a value for the meta feature: ', top_ten_subjects, key='value3')
     statistic_df=get_statistic_df(df_train, label_values, filter, feature_sel, subject_type)
     
-var_to_name={"characters_per_word": 'number of characters per word', 'characters':'number of total characters', 
-          'syll_per_word': 'number of syllables per word', 'words_per_sentence': 'number of words per sentence', 'type_token_ratio': 'type token ratio',
+var_to_name={"characters_per_word": 'average characters per word', 'characters':'number of total characters', 
+          'syll_per_word': 'average syllables per word', 'words_per_sentence': 'average words per sentence', 'type_token_ratio': 'type token ratio',
          'syllables': 'number of total syllables', 'words': 'number of total words', 'wordtypes': 'number of word types',
          'long_words': 'number of long words', 'complex_words': 'number of complex words'}
 name_to_var={v: k for k, v in var_to_name.items()}
 
-DEFAULT1='number of characters per word'
-DEFAULT2='number of words per sentence'
+DEFAULT1='average characters per word'
+DEFAULT2='average words per sentence'
 
 def selectbox_with_default1(text, values, default=DEFAULT1, sidebar=False):
     func = st.sidebar.selectbox if sidebar else st.selectbox
@@ -956,12 +910,7 @@ scatter_chart=st.altair_chart(
 )
 
 ##################readability score#####################
-
-# st.markdown(
-#     """ <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Readability Score for news</h2>""",
-#     unsafe_allow_html=True
-
-#     )
+# st.header('Readability Score for news')
 
 
 
@@ -984,12 +933,7 @@ st.markdown(
     unsafe_allow_html=True
 
     )
-
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">We first trained a fake news classification model with BERT as base model on the news statements from LIAR dataset. We then applied lime as interpretation tool to analyze which words in the sentence play important roles for the final prediction .</p>""",
-    unsafe_allow_html=True
-
-    )
+st.write("We first trained a fake news classification model with BERT as base model on the news statements from LIAR dataset. We then applied lime as interpretation tool to analyze which words in the sentence play important roles for the final prediction ")
 ################################ load from pickle of the feature importance ##############
 from lime import lime_text
 
@@ -1016,36 +960,11 @@ components.html(source_code, height=400)
 # t=' '.join(t)     
 # st.markdown(t,unsafe_allow_html=True)
 
+st.subheader('Summary')
 
-st.markdown(
-        f'''
-    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Summary</h2>
-    ''',
-        unsafe_allow_html=True,
-    )
-
-
-st.markdown(
-    """<p style="font-family: Gill Sans; text-align:justify">Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.</p>""",
-    unsafe_allow_html=True
-
-    )
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">People are susceptable to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news. </p>""",
-    unsafe_allow_html=True
-
-    )
-
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. </p>""",
-    unsafe_allow_html=True
-
-    )
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">The language of fake news is just as important as the source of the news. In real life, news coming from authority may be trustworthy, however, it is also possible that people lie about things in order to affect people's attributes and beliefs. </p>""",
-    unsafe_allow_html=True
-
-    )
-
-
+st.write('Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.')
+st.write('People are susceptable to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news. ')
+st.write('In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. ')
+st.write('Additionally, as many existing fake news detectors have achieved satisfatory results on fake news detection, we also trained a fake news classification model based on BERT and apply interpretable machine learning techniques to learn how machine learning models distinguish between fake news and true news. We visualize words in sentence that contributes to the model decision with hope that this will also help us improve our ability in spoting and identifying fake news. ')
+st.write("The language of fake news is just as important as the source of the news. In real life, news coming from authority may be trustworthy, however, it is also possible that people lie about things in order to affect people's attributes and beliefs. ")
 
