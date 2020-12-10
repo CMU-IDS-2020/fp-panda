@@ -858,7 +858,7 @@ DEFAULT2='average words per sentence'
 
 def selectbox_with_default1(text, values, default=DEFAULT1, sidebar=False):
     func = st.sidebar.selectbox if sidebar else st.selectbox
-    return func(text)
+    return func(text, np.insert(np.array(values, object), 0, default))
     
 def selectbox_with_default2(text, values, default=DEFAULT2, sidebar=False):
     func = st.sidebar.selectbox if sidebar else st.selectbox
@@ -908,7 +908,7 @@ scatter_chart=st.altair_chart(
 )
 
 ##################readability score#####################
-st.header('Readability Score for news')
+# st.header('Readability Score for news')
 
 
 
