@@ -321,10 +321,6 @@ top_n=st.slider(
     'Select the number of entries to show',
      1, 20,7)
 
-# label_sel=st.selectbox(
-#     'Select a label value: ',
-#      label_values)
-
 kind=['subject','speaker', 'job', 'state']
 def meta_feature_filtering(df, top_n, label, feature_sel):
     df_sub=df_train.loc[df_train.label==label]
@@ -370,8 +366,11 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     
     return combined_table
 
+df_train.loc[df_train.speaker=='hillary-clinton']
 
 combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
+
+combined_table.loc[combined_table.speaker=='hillary-clinton']
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
