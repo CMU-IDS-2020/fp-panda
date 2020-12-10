@@ -333,16 +333,13 @@ def meta_feature_filtering(df, top_n, label, feature_sel):
     return sel
 
 display_type=['Absolute', 'Percentage']
+absolute=st.selectbox(
+        'Select type of values: ',
+        display_type)
 
-col1,col2=st.beta_columns(2)
-with col1:
-         absolute=st.selectbox(
-                 'Select type of values: ',
-                 display_type)
-with col2:
-         feature_sel=st.selectbox(
-             'Select a feature to sort the news: ',
-              meta_feature)
+feature_sel=st.selectbox(
+    'Select a feature to sort the news: ',
+     meta_feature)
 
 @st.cache(allow_output_mutation=True)
 def meta_feature_filtering_combined(df, top_n, kind, absolute):
@@ -844,14 +841,14 @@ if not filter:
     feature_sel=None
     statistic_df=get_statistic_df(df_train, label_values, filter, feature_sel, subject_type)
 else:
-    n_point=500
+    n_point=5000
     feature_sel=st.selectbox( 'Select a filtering on news: ', meta_feature, key='meta_feature3')
     top_ten_subjects=df_train[feature_sel].value_counts()[:20].index
     subject_type=st.selectbox('Select a value for the meta feature: ', top_ten_subjects, key='value3')
     statistic_df=get_statistic_df(df_train, label_values, filter, feature_sel, subject_type)
     
-var_to_name={"characters_per_word": 'number of characters per word', 'characters':'number of total characters', 
-          'syll_per_word': 'number of syllables per word', 'words_per_sentence': 'number of words per sentence', 'type_token_ratio': 'type token ratio',
+var_to_name={"characters_per_word": 'average characters per word', 'characters':'number of total characters', 
+          'syll_per_word': 'average syllables per word', 'words_per_sentence': 'average words per sentence', 'type_token_ratio': 'type token ratio',
          'syllables': 'number of total syllables', 'words': 'number of total words', 'wordtypes': 'number of word types',
          'long_words': 'number of long words', 'complex_words': 'number of complex words'}
 name_to_var={v: k for k, v in var_to_name.items()}
