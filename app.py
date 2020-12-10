@@ -294,8 +294,7 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     else:
         combined_table=combined_table[:top_n]
         combined_table=combined_table.melt(id_vars=kind)
-        
-         x1=combined_table.loc[combined_table.variable=='false']
+        x1=combined_table.loc[combined_table.variable=='false']
     return combined_table, x1
 
 
