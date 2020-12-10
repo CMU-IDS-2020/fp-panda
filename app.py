@@ -279,27 +279,21 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     for l in label_values:
         df_sub=df_train.loc[df_train.label==l]
         sel=pd.DataFrame(df_sub[kind].value_counts()).reset_index()
-        sel.columns=['kind',f'{l}']
-        row_name=sel.iloc[:,0]
-        total.append(sel.iloc[:,1])
-    total.append(row_name)
-    combined_table=pd.concat(total, axis=1)
-    combined_table
-    combined_table.shape
+        total.append(sel)
+    combined_table=pd.DataFrame(total[0]).merge(pd.DataFrame(total[1]), on='index')
+    combined_table.columns=[kind,label_values[0], label_values[1]]
+
     if absolute=='Percentage':
-        v=combined_table.iloc[:,-1]
         combined_table['sum']=combined_table.sum(axis=1)
         combined_table=combined_table.loc[combined_table['sum']>20]
-        combined_table.iloc[:, :-2]=combined_table.iloc[:, :-2].div(combined_table['sum'], axis=0)
-        combined_table
+        combined_table.iloc[:, 1:-1]=combined_table.iloc[:, 1:-1].div(combined_table['sum'], axis=0)
         combined_table.sort_values(by=['false','sum'], inplace=True, ascending=False)
         combined_table=combined_table.drop('sum', axis=1)
         combined_table=combined_table[:top_n]
-        combined_table=combined_table.melt(id_vars='kind')
+        combined_table=combined_table.melt(id_vars=kind)
     else:
         combined_table=combined_table[:top_n]  
-        combined_table=combined_table.melt(id_vars='kind')
-    
+        combined_table=combined_table.melt(id_vars=kind)
     return combined_table
 
 
@@ -307,10 +301,15 @@ combined_table_bar=meta_feature_filtering_combined(df_train, top_n, feature_sel,
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
-    alt.Chart(combined_table_bar, width=700).mark_bar().encode(
-        x='value:Q',
-        y=alt.Y('kind:N', sort='-x'),
-        color='variable:N',
+    # alt.Chart(combined_table_bar, width=700).mark_bar().encode(
+    #     x='value:Q',
+    #     y=alt.Y('kind:N', sort='-x'),
+    #     color='variable:N',
+    # ).interactive()
+    alt.Chart(x, width=700, title=f"Top {kind} with highest number of fake news ({absolute})").mark_bar().encode(
+         x='value:Q',
+         y=alt.Y(f'{kind}:N', sort=list(x1[kind])),
+    color='variable:N',
     ).interactive()
 )
 
