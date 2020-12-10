@@ -197,69 +197,7 @@ Ability to identify fake news and understand their characteristics are criticall
         unsafe_allow_html=True,
         )
 
-# st.write("The Fed created $1.2 trillion out of nothing, gave it to banks, and some of them foreign banks, so that they could stabilize their operations.")
-# st.write("Topic: economy,financial-regulation")
-# st.write("Speaker: dennis-kucinich")
-# st.write("Job: U.S. representative")
-# st.write("Party: democrat")
-# option2 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key="option2")
 
-# 'You think the statement is:', option2
-
-
-# st.write("Says President Barack Obama told a room of students, Children, every time I clap my hands together, a child in America dies from gun violence, and then a child told him he could solve the problem by not clapping any more.")
-# st.write("Topic: guns")
-# st.write("Speaker: chain-email")
-# option3 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key='option3')
-
-# 'You think the statement is:', option3
-
-
-# st.write("Says Hillary Clinton wants to go to a single-payer plan for health care")
-# st.write("Topic: health-care")
-# st.write("Speaker: Donald Trump")
-# st.write('Job: President-Elect')
-# option4 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key='option4')
-
-# st.write("Ninety-seven percent of Americans do not receive subsidies for health care under the Affordable Care Act.")
-# st.write("Topic: congress,government-regulation,guns,public-health,states")
-# st.write("Speaker: Austin Scott")
-# option5 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key='option5')
-
-# st.write("There is no record of congresswoman Betty Sutton ... ever holding a single in-person town hall meeting open to the general public.")
-# st.write("Topic: job-accomplishments")
-# st.write("Speaker: Jim Renacci")
-# st.write("Job: U.S. representative")
-# st.write("Party: Republican")
-# option6 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key='option6')
-
-
-# fact_list=np.array(['False', 'True', 'False', 'False', 'True', 'False'])
-# check=st.button('check my answer', key='check')
-# pred_list=np.array([option1, option2, option3, option4, option5, option6])
-# if check:
-#     st.write(f'you have got {sum(pred_list==fact_list)}/6 correct')
-#     st.write('The answer is true, false, false, false, true, false')
-
-
-
-# st.header('Understanding Fake News and How Models Distinguish Them')
-
-# with open('preprocess/Introduction.txt', 'r') as f:
-#     intro_text=f.readlines()[0]
-
-# st.write(intro_text)
-# st.header('On what subjects do people tend to lie?')
 st.markdown(
         f'''
     <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">On What Subjects Do People Tend to Lie?</h2>
@@ -371,32 +309,18 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     return combined_table
 
 
-combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
+combined_table_bar=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
+combined_table_bar.shape()
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
-    alt.Chart(combined_table, width=700).mark_bar().encode(
+    alt.Chart(combined_table_bar, width=700).mark_bar().encode(
         x='value:Q',
         y=alt.Y('kind:N', sort='-x'),
         color='variable:N',
     ).interactive()
 )
 
-# else:
-#     label_sel=st.selectbox(
-#         'Select a label value: ',
-#          label_values)
-
-#     # combined_table=meta_feature_filtering(df_train, top_n, label_sel, feature_sel)
-#     combined_table=combined_table.loc[combined_table.variable==label_sel]
-#     combined_table=combined_table.drop('variable', axis=1)
-
-#     scatter_chart=st.altair_chart(
-#         alt.Chart(combined_table).mark_bar().encode(
-#             x='value:Q',
-#             y=alt.Y('kind:N', sort='-x')
-#         ).interactive()
-#     )
 ########################### PART 5 ##############################
 
 
@@ -921,6 +845,7 @@ var2=name_to_var[var2]
 
 
 current_df=select_df(var1,var2, 'sentence_info', statistic_df, filter, n_point)
+current_df.shape()
 # Configure the options common to all layers
 
 brush = alt.selection(type='interval')
