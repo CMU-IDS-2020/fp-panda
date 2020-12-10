@@ -435,7 +435,7 @@ In this section, we will explore the frequent words and words group used in each
 
 st.markdown(
 
-    f'''<p style="text-align:justify;font-family:Gill Sans;">Word frequency for different types of news allow us to identify what words are likely to appear in fake news. By looking at news with different subjects, speakers, jobs, party, and state, we could learn about words that show up in the fake news. For instance, if we use subject as a filter and select news about crimes, we see that the word “gun” is likely to appear in fake news. Similarly, if we select news that are spoken by Donald Trump, we see the words “Clinton", “war", “bill” and “Iraq” appear very often. Moreover, from the bubble plot, we can see that the frequent words used in the fake news are relatively denser than the true news. For example independent-party, healthcare-subject, presidential-candidate-job.  Such findings are intuitive, where the true news covers a wide range of topics while the fake news only focusing on some of those that are hard to validate.</p>
+    f'''<p style="text-align:justify;font-family:Gill Sans;">Word frequency for different types of news allows us to identify what words are likely to appear in fake news. By looking at news with different subjects, speakers, jobs, parties, and state, we could learn about words that show up in the fake news. For instance, if we use the subject as a filter and select news about crimes, we see that the word “gun” is likely to appear in fake news. Similarly, if we select news that is spoken by Donald Trump, we see the words “Clinton", “war", “bill” and “Iraq” appear very often. Moreover, from the bubble plot, we can see that the frequent words used in the fake news are relatively denser than the true news. For example independent-party, healthcare-subject, presidential-candidate-job. Such findings are intuitive, where the true news covers a wide range of topics while the fake news only focusing on some of those that are hard to validate.</p>
 
 
     ''',
@@ -648,7 +648,7 @@ st.markdown(
 
     )
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify;">We observe different distributions for sentiments when applying filters on news data. For instance, we observe that for the news with topic on healthcare, fake news have a more positive distribution compared to true news. And for the topics on abortion, the false news is less neutral compared to the true news. </p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify;">We observe different distributions for sentiments when applying filters on news data. For instance, we observe that for the news with a topic on healthcare, fake news has a more positive distribution compared to true news. And for the topics on abortion, the false news is less neutral compared to the true news.</p>""",
     unsafe_allow_html=True
 
     )
@@ -729,7 +729,7 @@ st.markdown(
     
     
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">We further examined the sentence level information for news, including number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type token ratio (number of unique words to number of total words). Overall, there seems to be no obvious differences between fake news and true news on those features in our dataset. However, when we apply filter on the dataset, we found that for different speakers, for instance, sentence level features will be different for fake news and true news. If we filter dataset with speaker as Donald Trump, we will see that the number of complex words in a statement will be larger for fake news than for true news. </p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">We further examined the sentence level information for news, including the number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type-token ratio (number of unique words to number of total words). Overall, there seem to be no obvious differences between fake news and true news on those features in our dataset. However, when we apply a filter on the dataset, we found that for different speakers, for instance, sentence-level features will be different for fake news and true news. If we filter the dataset with speakers such as Donald Trump, we will see that the number of complex words in a statement will be larger for fake news than for true news.</p>""",
     unsafe_allow_html=True
 
     )
@@ -895,13 +895,13 @@ st.markdown(
 
 
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">There are have been different online fake news detector aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help us improving our ability in detecting fake news. However, there are little studies on how machine learning models actually predict the fake news and what part of a news have a greater contribution to the model decision. We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence that may cause the news to be predicted as true or fake.</p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">There are have been different online fake news detector aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help us improve our ability in detecting fake news. However, there are few studies on how machine learning models actually predict the fake news and what part of the news have a greater contribution to the model decision. We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence may cause the news to be predicted as true or fake.</p>""",
     unsafe_allow_html=True
 
     )
     
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">We first trained a fake news classification model with BERT as base model on the news statements from LIAR dataset. We then applied lime as interpretation tool to analyze which words in the sentence play important roles for the final prediction .</p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">We first trained a fake news classification model with BERT as a base model on the news statements from LIAR dataset. We then applied lime as an interpretation tool to analyze which words in the sentence play important roles for the final prediction.</p>""",
     unsafe_allow_html=True
 
     )
@@ -945,7 +945,8 @@ st.markdown(
     )
     
 st.markdown(
-    """<p style="font-family: Gill Sans; text-align:justify">Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.</p>""",
+    """<p style="font-family: Gill Sans; text-align:justify">Fake news contains misleading information and deliberately constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.
+People are susceptible to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news.</p>""",
     unsafe_allow_html=True,
 
     )
