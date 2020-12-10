@@ -306,7 +306,7 @@ scatter_chart=st.altair_chart(
     #     y=alt.Y('kind:N', sort='-x'),
     #     color='variable:N',
     # ).interactive()
-    alt.Chart(x, width=700, title=f"Top {kind} with highest number of fake news ({absolute})").mark_bar().encode(
+    alt.Chart(combined_table_bar, width=700, title=f"Top {kind} with highest number of fake news ({absolute})").mark_bar().encode(
          x='value:Q',
          y=alt.Y(f'{kind}:N', sort=list(x1[kind])),
     color='variable:N',
