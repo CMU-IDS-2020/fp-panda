@@ -284,7 +284,8 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
         total.append(sel.iloc[:,1])
     total.append(row_name)
     combined_table=pd.concat(total, axis=1)
-    
+    combined_table
+    combined_table.shape
     if absolute=='Percentage':
         v=combined_table.iloc[:,-1]
         combined_table['sum']=combined_table.sum(axis=1)
@@ -295,7 +296,6 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
         combined_table=combined_table.drop('sum', axis=1)
         combined_table=combined_table[:top_n]
         combined_table=combined_table.melt(id_vars='kind')
-        # combined_table.sort_values(by=['variable', 'value'], inplace=True, ascending=[True, False])
     else:
         combined_table=combined_table[:top_n]  
         combined_table=combined_table.melt(id_vars='kind')
@@ -304,7 +304,6 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
 
 
 combined_table_bar=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
-combined_table_bar.shape
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
