@@ -905,7 +905,11 @@ st.markdown(
     unsafe_allow_html=True
 
     )
+st.markdown(
+    """ <p style="font-family: Gill Sans; text-align:justify">Here we presented three figures. The first one is the model's prediction with confidence, the second one is the word's weight by using local models to get the mimic the boundary, and the last one is the weight visualization aligned with words. After seeing all the properties of fake and true news, you can choose a sentence from the dataset to see if your prediction is the same as the model's</p>""",
+    unsafe_allow_html=True
 
+    )
 ################################ load from pickle of the feature importance ##############
 from lime import lime_text
 
