@@ -832,11 +832,15 @@ filter=st.checkbox('Add filtering ')
 
 if not filter:
     n_point=st.slider('Select the number of points to display', 1, 5000, 100)
+    subject_type=None
+    feature_sel=None
+    statistic_df=get_statistic_df(df_train, label_values, filter, feature_sel, subject_type)
 else:
     n_point=500
     feature_sel=st.selectbox( 'Select a filtering on news: ', meta_feature, key='meta_feature3')
     top_ten_subjects=df_train[feature_sel].value_counts()[:20].index
     subject_type=st.selectbox('Select a value for the meta feature: ', top_ten_subjects, key='value3')
+    statistic_df=get_statistic_df(df_train, label_values, filter, feature_sel, subject_type)
     
 var_to_name={"characters_per_word": 'number of characters per word', 'characters':'number of total characters', 
           'syll_per_word': 'number of syllables per word', 'words_per_sentence': 'number of words per sentence', 'type_token_ratio': 'type token ratio',
@@ -860,7 +864,7 @@ var2=selectbox_with_default2('Select second sentence information', list(name_to_
 var1=name_to_var[var1]
 var2=name_to_var[var2]
 
-statistic_df=get_statistic_df(df_train, label_values, filter, feature_sel, subject_type)
+
 current_df=select_df(var1,var2, 'sentence_info', statistic_df, filter, n_point)
 # Configure the options common to all layers
 
