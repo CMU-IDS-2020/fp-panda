@@ -321,6 +321,10 @@ top_n=st.slider(
     'Select the number of entries to show',
      1, 20,7)
 
+# label_sel=st.selectbox(
+#     'Select a label value: ',
+#      label_values)
+
 kind=['subject','speaker', 'job', 'state']
 def meta_feature_filtering(df, top_n, label, feature_sel):
     df_sub=df_train.loc[df_train.label==label]
@@ -366,11 +370,8 @@ def meta_feature_filtering_combined(df, top_n, kind, absolute):
     
     return combined_table
 
-df_train.loc[df_train.speaker=='hillary-clinton']
 
 combined_table=meta_feature_filtering_combined(df_train, top_n, feature_sel, absolute)
-
-combined_table.loc[combined_table.speaker=='hillary-clinton']
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
@@ -959,11 +960,38 @@ components.html(source_code, height=400)
 # t=' '.join(t)     
 # st.markdown(t,unsafe_allow_html=True)
 
-st.subheader('Summary')
 
-st.write('Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.')
-st.write('People are susceptable to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news. ')
-st.write('In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. ')
-st.write('Additionally, as many existing fake news detectors have achieved satisfatory results on fake news detection, we also trained a fake news classification model based on BERT and apply interpretable machine learning techniques to learn how machine learning models distinguish between fake news and true news. We visualize words in sentence that contributes to the model decision with hope that this will also help us improve our ability in spoting and identifying fake news. ')
-st.write("The language of fake news is just as important as the source of the news. In real life, news coming from authority may be trustworthy, however, it is also possible that people lie about things in order to affect people's attributes and beliefs. ")
+st.markdown(
+        f'''
+    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Summary</h2>
+    ''',
+        unsafe_allow_html=True,
+    )
+    
+st.markdown(
+    """<p style="font-family: Gill Sans; text-align:justify">Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.</p>""",
+    unsafe_allow_html=True
 
+    )
+    
+st.markdown(
+    """ <p style="font-family: Gill Sans; text-align:justify">People are susceptable to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news. </p>""",
+    unsafe_allow_html=True
+
+    )
+    
+st.markdown(
+    """ <p style="font-family: Gill Sans; text-align:justify">In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. </p>""",
+    unsafe_allow_html=True
+
+    )
+st.markdown(
+    """ <p style="font-family: Gill Sans; text-align:justify">Additionally, as many existing fake news detectors have achieved satisfatory results on fake news detection, we also trained a fake news classification model based on BERT and apply interpretable machine learning techniques to learn how machine learning models distinguish between fake news and true news. We visualize words in sentence that contributes to the model decision with hope that this will also help us improve our ability in spoting and identifying fake news.</p>""",
+ unsafe_allow_html=True
+
+    )
+st.markdown(
+    """ <p style="font-family: Gill Sans; text-align:justify">The language of fake news is just as important as the source of the news. In real life, news coming from authority may be trustworthy, however, it is also possible that people lie about things in order to affect people's attributes and beliefs. </p>""",
+    unsafe_allow_html=True
+
+    )
