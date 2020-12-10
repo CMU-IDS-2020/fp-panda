@@ -955,9 +955,9 @@ components.html(source_code, height=600)
 
 st.subheader('Summary')
 
-st.write('Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.")
+st.write('Fake news contains misleading information and deliberatedly constructed stories that intend to misguide public opinion and to seek financial gain. With the current wide use of social media, fake news could spread quickly causing even more people to share the news unknowingly.')
 st.write('People are susceptable to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news. ')
-st.write('In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. ")
+st.write('In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. ')
 st.write('Additionally, as many existing fake news detectors have achieved satisfatory results on fake news detection, we also trained a fake news classification model based on BERT and apply interpretable machine learning techniques to learn how machine learning models distinguish between fake news and true news. We visualize words in sentence that contributes to the model decision with hope that this will also help us improve our ability in spoting and identifying fake news. ')
 
 
