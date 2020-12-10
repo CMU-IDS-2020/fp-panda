@@ -302,9 +302,9 @@ combined_table_bar, x1=meta_feature_filtering_combined(df_train, top_n, feature_
 
 # if combine_labels:
 scatter_chart=st.altair_chart(
-    alt.Chart(combined_table_bar, width=700, title=f"Top {kind} with highest number of fake news ({absolute})").mark_bar().encode(
+    alt.Chart(combined_table_bar, width=700, title=f"Top {feature_sel} with highest number of fake news ({absolute})").mark_bar().encode(
          x='value:Q',
-         y=alt.Y(f'{kind}:N', sort=list(x1[kind])),
+         y=alt.Y(f'{feature_sel}:N', sort=list(x1[feature_sel])),
     color='variable:N',
     ).interactive()
 )
