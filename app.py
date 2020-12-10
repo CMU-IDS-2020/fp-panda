@@ -841,7 +841,7 @@ if not filter:
     feature_sel=None
     statistic_df=get_statistic_df(df_train, label_values, filter, feature_sel, subject_type)
 else:
-    n_point=5000
+    n_point=500
     feature_sel=st.selectbox( 'Select a filtering on news: ', meta_feature, key='meta_feature3')
     top_ten_subjects=df_train[feature_sel].value_counts()[:20].index
     subject_type=st.selectbox('Select a value for the meta feature: ', top_ten_subjects, key='value3')
