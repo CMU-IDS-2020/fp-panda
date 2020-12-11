@@ -210,7 +210,14 @@ st.markdown(
     
 st.markdown(
         f'''
-    <p style="text-align: justify;font-family: Gill Sans">  We found through analysis that the subjects with most amount of fake news covers include health-care, taxes, immigration, elections and candidates-biography. Given the large amount of news that are associated with those topics, we also calculated the fake news ratio for further analysis and it is found that subjects with highest fake news ratio (number of fake news to total number of news) are state-budget, labor (over 80%), terrorism and foreign-policy (over 70%), and health-care and religion, over 60%.   </p>
+    <p style="text-align: justify;font-family: Gill Sans">  We found through analysis that the subjects with most amount of fake news covers include health-care, taxes, immigration, elections and candidates-biography. Given the large amount of news that are associated with those topics, we also calculated the fake news ratio, number of fake news to total number of news, for further analysis and it is found that subjects with highest fake news ratio are state-budget, labor (over 80%), terrorism and foreign-policy (over 70%), and health-care and religion, over 60%.   </p>
+    ''',
+        unsafe_allow_html=True,
+    )
+    
+st.markdown(
+        f'''
+    <p style="text-align: justify;font-family: Gill Sans">  We found that the source of news is very important for identifying its truthfulness. By looking at which speakers have highest fake news ratio, we found that news coming from chain-email, blog-posting are likely to be fake news than from an authority news source. Additionally, some speakers such as Ben Carson, Donald Trump, Ted Cruz also frequently tell fake news.   </p>
     ''',
         unsafe_allow_html=True,
     )
