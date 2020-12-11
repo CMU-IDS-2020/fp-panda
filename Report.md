@@ -38,7 +38,7 @@ Moreover, sentiment analysis allows people to quantify and study the subjective 
 
 We further examined the sentence level information for news, including the number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type-token ratio (number of unique words to number of total words). Similarly, people could select a feature to analyze the news on and review different features and their relations. The visualization intends to offer additional sentence-level information for understanding the characteristics of fake news.
 
-#### Fake News Detection Model
+### Fake News Detection Model
 
 Different online fake news detectors are aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help us improve our ability in detecting fake news. However, there are few studies on how machine learning models predict the fake news and what part of a news statement will affect the model decision. We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence may cause the news to be predicted as true or fake. 
 
