@@ -163,7 +163,7 @@ with col1:
     pred_list=np.array([option1, option2, option3])#, option4, option5, option6
 with col2:
     if check:
-        st.markdown(f'<div style="font-family: Gill Sans;">you have got {sum(pred_list==fact_list)}/3 correct</div>',unsafe_allow_html=True,)
+        st.markdown(f'<div style="font-family: Gill Sans;">you got {sum(pred_list==fact_list)}/3 correct</div>',unsafe_allow_html=True,)
         # st.write('The answer is true, false, false')#, false, true, false
 with col3:
     if check:
@@ -177,7 +177,7 @@ with col3:
 
 st.markdown(
         f'''
-    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Understanding Fake News and How Models Distinguish Them</h2>
+    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Understanding Fake News</h2>
     ''',
         unsafe_allow_html=True,
     )
@@ -190,23 +190,35 @@ Ability to identify fake news and understand their characteristics are criticall
      """,
         unsafe_allow_html=True,
         )
+        
+st.markdown(
+        f'''
+    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">A Fake News Dataset</h2>
+    ''',
+        unsafe_allow_html=True,
+    )
 
 
 st.markdown(
         f'''
-    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">On What Subjects Do People Tend to Lie?</h2>
+    <p style="text-align: justify;font-family: Gill Sans">In our article, we develop the analysis based on the LIAR dataset, a benchmark dataset for fake news detection. It is collected from POLITIFACT.COM and annotated using human labor, which guarantes the accuracy. The dataset contains over 10000 news with six classes, namely: true, mostly-true, half-true, barely-true, false, and pants-fire. These represent six degrees of authenticity. In our analysis, we binned those labels into two groups: True News (including labels: true, mostly-true, half-true) and False News (including labels: barely-true, false, and pants-fire). </p>
     ''',
         unsafe_allow_html=True,
     )
 
 st.markdown(
         f'''
-    <p style="text-align: justify;font-family: Gill Sans">The dataset we used is called LIAR, and it is collected from POLITIFACT.COM and annotated using human labor, which guaranteed the accuracy. The dataset contains over 10000 news with six classes, namely: true, mostly-true, half-true, barely-true, false, and pants-fire. These represent six degrees of authenticity. However, in our analysis, we bin these into two groups: True News and False News, and each group contains three degrees. </p>
+    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">What is fake news about and who tells fake news?</h2>
     ''',
         unsafe_allow_html=True,
     )
 
-
+st.markdown(
+        f'''
+    <p style="text-align: justify;font-family: Gill Sans"> The proliferation of fake news in every day access social media platform, online news blogs and online newspaper mades it hard for individuals to check the reliability of the online contents. Fake news are deliberately constructed stories that intend to misguide public opinion and to seek financial gain. To understand what subjects fake news discussed and who tells fake news, we developed the interactive figure below to explore which are more often associated with fake news and who tell the most amount of fake news.   </p>
+    ''',
+        unsafe_allow_html=True,
+    )
 
 columns=['id','label','statement','subject','speaker', 'job', 'state','party','barely_true_counts','false_counts',
                   'half_true_counts','mostly_true_counts','pants_on_fire_counts','context']
@@ -967,3 +979,16 @@ st.markdown(
     unsafe_allow_html=True,
 
     )
+                    
+st.markdown(f"""
+        <div style="font-family: Gill Sans;text-align: justify;"> We further provide links to some useful fake news detector and facts checking website. </div>
+        
+     """,
+        unsafe_allow_html=True,
+        )
+                    
+                    
+st.markdown("""<a href="https://www.politifact.com">PolitiFact</a>""", unsafe_allow_html=True)
+st.markdown("""<a href="https://www.factcheck.org">FactCheck</a>""", unsafe_allow_html=True)
+st.markdown("""<a href= https://www.snopes.com> Snopes </a>""", unsafe_allow_html=True)
+                    
