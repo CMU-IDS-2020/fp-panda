@@ -13,6 +13,16 @@ Faner Lin: Faner researched related topics of fake news detection and discussed 
 
 Shuaidong Pan: Shuaidong researched related topics and discussed with Faner to design different components for the narrative article. Additionally, Shuaidong also focused on selecting fake news dataset and designing interactive components for entity recognition in news statements and word frequency. He used GloVe embedding and t-SNE to visualize the word frequency in 2d space and applied Name Entity Recognition techniques to extract names and places entities in news statements. Shuaidong also worked on designing and improving the layout of the article and researching related works. Finally, Shuaidong also participated in composing the final report and constructing the narratives in the article.
 
+## Abstract
+With the prevalence of fake news in online social media and online news, it is becoming more and more challenging for people to identify trustworthy news sources and determine the reliability of news content. In our article, we investigated the characteristics of political fake news by developing analysis and visualization based on the LIAR dataset, which contains different political news and information regarding the source of news. We found that the source of news and the entities mentioned in news are important factors in identifying the truthfulness of a given news statement. Additionally, we found that the word usage, sentiment, and other sentence-level information will be different for fake news and true news under different topics or speakers. We also developed a fake news classification model with BERT as a base model to predict labels for given news. By using the LIME framework, Local interpretable model-agnostic explanations, we visualize the words in a news statement that affect the model's decision. By learning the characteristics of fake news and understanding how the machine learning model makes decisions, readers will have more confidence in detecting and analyzing fake news.
+
+## Summary Image
+
+![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.47.33 PM.png)
+![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.47.47 PM.png)
+![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.47.55 PM.png)
+![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.48.01 PM.png)
+![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.47.33 PM.png)
 
 ## Deliverables
 
