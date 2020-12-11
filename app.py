@@ -933,12 +933,6 @@ People are susceptible to false messages and could be easily misled by the infor
     )
     
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">People are susceptable to false messages and could be easily misled by the information and it is important for us to have the ability to identify fake news. </p>""",
-    unsafe_allow_html=True,
-
-    )
-    
-st.markdown(
     """ <p style="font-family: Gill Sans; text-align:justify">In this article, we have compared fake news with true news from a few perspectives, including the topics that fake news covered, the people and subjects that are usually mentioned in fake news statements, and the frequently used words in different types of fake statements. Additionally, sentiment analysis and sentence level information are also provided for comparing fake news and true news in different news statements. Furthermore, we also find several interesting findings. The first one is the source of the news, namely the speaker, the job of the speaker are important to identify fake news. The intent is also a very important factor, for example, the election-related or geopolitical-related fake news is higher than other, this news is intended to capture people's attention and change people's opinion. Thirdly, as opposed to fake news, the true news covers more topics within the same subject, whereas fake news is more target-oriented. Lastly, we also find that fake news used words more exaggerated than true news, such word 'billion' use a lot in fake news, whereas in true news 'million' is more used.</p>""",
     unsafe_allow_html=True,
 
@@ -954,11 +948,11 @@ st.markdown(
 
     )
                     
-# st.markdown("""<div style="font-family: Gill Sans;text-align: justify;"> We further provide links to some useful fake news detector and facts checking website. </div> """,
-#         unsafe_allow_html=True)
+st.markdown("""<div style="font-family: Gill Sans;text-align: justify;"> We further provide links to some useful fake news detector and facts checking website. </div> """,
+         unsafe_allow_html=True)
                     
                     
-# st.markdown("""<a href="https://www.politifact.com">PolitiFact</a>""", unsafe_allow_html=True)
-# st.markdown("""<a href="https://www.factcheck.org">FactCheck</a>""", unsafe_allow_html=True)
-# st.markdown("""<a href= https://www.snopes.com> Snopes </a>""", unsafe_allow_html=True)
+st.markdown("""<a href="https://www.politifact.com">PolitiFact</a>""", unsafe_allow_html=True)
+st.markdown("""<a href="https://www.factcheck.org">FactCheck</a>""", unsafe_allow_html=True)
+st.markdown("""<a href= https://www.snopes.com> Snopes </a>""", unsafe_allow_html=True)
                     
