@@ -975,27 +975,32 @@ st.markdown(
 
 
 
-st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> University of Central Florida News | UCF Today. 2020. How Fake News Affects U.S. Elections </li></p>""",
         unsafe_allow_html=True,
     )
 
 
-st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> Stellino, M., 2020. 8 Resources To Detect Fake News. [online] Newscollab.org </li></p>""",
         unsafe_allow_html=True,
     )
 
 
-st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> Researchguides.library.wisc.edu. 2020. [online] </li></p>""",
         unsafe_allow_html=True,
     )
 
 
-st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> Allcott, H. and Gentzkow, M., 2017. Social media and fake news in the 2016 election. Journal of economic perspectives, 31(2), pp.211-36. </li></p>""",
         unsafe_allow_html=True,
     )
 
 
-st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> Turner, P.A., 2018. Respecting the Smears: Anti-Obama Folklore Anticipates Fake News. Journal of American Folklore, 131(522), pp.421-425. </li></p>""",
+        unsafe_allow_html=True,
+    )
+                    
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> Kurtzleben, Danielle. "With “fake news,” Trump moves from alternative facts to alternative language." National Public Radio. Retrieved from http://www. npr. org/2017/02/17/515630467/with-fake-news-trump-moves-from-alternative-facts-to-alternative-language (2017).
+ </li></p>""",
         unsafe_allow_html=True,
     )
                     
