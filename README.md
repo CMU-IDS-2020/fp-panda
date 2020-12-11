@@ -18,11 +18,8 @@ With the prevalence of fake news in online social media and online news, it is b
 
 ## Summary Image
 
-![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.47.33 PM.png)
-![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.47.47 PM.png)
-![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.47.55 PM.png)
-![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.48.01 PM.png)
-![GitHub Logo](/Image/Screen Shot 2020-12-10 at 11.47.33 PM.png)
+![GitHub Logo](/Image/p3.png)
+![GitHub Logo](/Image/p4.png)
 
 ## Deliverables
 
