@@ -942,11 +942,10 @@ st.markdown(
  unsafe_allow_html=True,
 
     )
-st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">The language of fake news is just as important as the source of the news. In real life, news coming from authority may be trustworthy, however, it is also possible that people lie about things in order to affect people's attributes and beliefs. </p>""",
-    unsafe_allow_html=True,
-
-    )
+# st.markdown(
+#     """ <p style="font-family: Gill Sans; text-align:justify">The language of fake news is just as important as the source of the news. In real life, news coming from authority may be trustworthy, however, it is also possible that people lie about things in order to affect people's attributes and beliefs. </p>""",
+#     unsafe_allow_html=True,
+#    )
                     
 st.markdown("""<div style="font-family: Gill Sans;text-align: justify;"> We further provide links to some useful fake news detector and facts checking website. </div> """,
          unsafe_allow_html=True)
