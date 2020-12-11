@@ -82,3 +82,7 @@ Stellino, M., 2020. 8 Resources To Detect Fake News. [online] Newscollab.org
 Researchguides.library.wisc.edu. 2020. [online]
 
 Allcott, H. and Gentzkow, M., 2017. Social media and fake news in the 2016 election. Journal of economic perspectives, 31(2), pp.211-36.
+
+Turner, P.A., 2018. Respecting the Smears: Anti-Obama Folklore Anticipates Fake News. Journal of American Folklore, 131(522), pp.421-425.
+
+Cunha, E., Magno, G., Caetano, J., Teixeira, D. and Almeida, V., 2018, September. Fake news as we feel it: perception and conceptualization of the term “fake news” in the media. In International Conference on Social Informatics (pp. 151-166). Springer, Cham.
