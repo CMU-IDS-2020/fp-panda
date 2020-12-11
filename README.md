@@ -7,9 +7,7 @@
 * **Track**: Narrative
 
 ## Work distribution
-
-Update towards the end of the project.
-Faner Lin:
+Faner Lin: Constructed EDA, sentiment analysis, and reports associated with them. 
 
 Shuaidong Pan:
 
