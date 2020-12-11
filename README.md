@@ -33,4 +33,12 @@ slides for design review: https://docs.google.com/presentation/d/1VTH1WSd9Kigl7f
 - [x] All code for the project should be in the repo.
 - [x] A 5 minute video demonstration.
 - [x] Update Readme according to Canvas instructions.
-- [ ] A detailed project report. The contact should submit the video and report as a PDF on Canvas.
+- [x] A detailed project report. The contact should submit the video and report as a PDF on Canvas.
+
+### Running Instructions
+1. clone the github repo to local directory
+2. download all packages and dependencies needed. 
+pip install -r requirements.txt
+3. Change path to the project directory, run 
+streamlit run app.py
+
