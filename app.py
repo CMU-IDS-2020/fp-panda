@@ -215,12 +215,12 @@ st.markdown(
         unsafe_allow_html=True,
     )
     
-st.markdown(
-        f'''
-    <p style="text-align: justify;font-family: Gill Sans">  We found that the source of news is very important for identifying its truthfulness. By looking at which speakers have highest fake news ratio, we found that news coming from chain-email, blog-posting are likely to be fake news than from an authority news source. Additionally, some speakers such as Ben Carson, Donald Trump, Ted Cruz also frequently tell fake news.   </p>
-    ''',
-        unsafe_allow_html=True,
-    )
+# st.markdown(
+#         f'''
+#     <p style="text-align: justify;font-family: Gill Sans">  We found that the source of news is very important for identifying its truthfulness. By looking at which speakers have highest fake news ratio, we found that news coming from chain-email, blog-posting are likely to be fake news than from an authority news source. Additionally, some speakers such as Ben Carson, Donald Trump, Ted Cruz also frequently tell fake news.   </p>
+#     ''',
+#         unsafe_allow_html=True,
+#     )
 
 columns=['id','label','statement','subject','speaker', 'job', 'state','party','barely_true_counts','false_counts',
                   'half_true_counts','mostly_true_counts','pants_on_fire_counts','context']
