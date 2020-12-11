@@ -93,18 +93,6 @@ with st.beta_expander("See More Details"):
         )
 
 
-
-
-# st.write("Says 57 percent of federal spending goes to the military and just 1 percent goes to food and agriculture, including food stamps.	federal-budget,military,poverty")
-# st.write("Topic: federal-budget,military,poverty")
-# st.write("Speaker: facebook-posts")
-# st.write("Job: Social media posting")
-# option1 = st.selectbox(
-#     'True or False',
-#      ["I don't know", 'True', 'False'], key="option1")
-
-# 'You think the statement is:', option1
-
 option1 = st.selectbox(
     'True or False',
      ["I don't know", 'True', 'False'], key="option1")
@@ -219,6 +207,13 @@ st.markdown(
     ''',
         unsafe_allow_html=True,
     )
+    
+st.markdown(
+        f'''
+    <p style="text-align: justify;font-family: Gill Sans">  We found through analysis that the subjects with most amount of fake news covers include health-care, taxes, immigration, elections and candidates-biography. Given the large amount of news that are associated with those topics, we also calculated the fake news ratio for further analysis and it is found that subjects with highest fake news ratio (number of fake news to total number of news) are state-budget, labor (over 80%), terrorism and foreign-policy (over 70%), and health-care and religion, over 60%.   </p>
+    ''',
+        unsafe_allow_html=True,
+    )
 
 columns=['id','label','statement','subject','speaker', 'job', 'state','party','barely_true_counts','false_counts',
                   'half_true_counts','mostly_true_counts','pants_on_fire_counts','context']
@@ -265,9 +260,6 @@ top_n=st.slider(
     'Select the number of entries to show',
      1, 20,7)
 
-# label_sel=st.selectbox(
-#     'Select a label value: ',
-#      label_values)
 
 kind=['subject','speaker', 'job', 'state']
 def meta_feature_filtering(df, top_n, label, feature_sel):
@@ -282,7 +274,7 @@ absolute=st.selectbox(
         display_type)
 
 feature_sel=st.selectbox(
-    'Select a feature to sort the news: ',
+    'Select a feature to filter the news: ',
      meta_feature)
 
 @st.cache(allow_output_mutation=True)
