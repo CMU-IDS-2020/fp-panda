@@ -6,6 +6,8 @@
   * Shuaidong Pan (shuaidop@andrew.cmu.edu)
 * **Track**: Narrative
 
+* **Video**: https://drive.google.com/file/d/12OOjPr4vsez3BYTGE7dJyItBCHoGRN76/view?usp=sharing
+
 ## Work distribution
 Faner Lin: Faner researched related topics of fake news detection and discussed with Shuaidong to design different components for the narrative article. Additionally, Faner focused on performing exploratory data analysis on the fake news dataset and designed the component for exploring the number of fake news associated with different subjects, speakers, and generating interactive components for sentiment analysis for different news and sentence-level information for different news. Faner also trained fake news classification model with BERT as the base model and applied interpretability tools lime-text for analyzing the word importance for fake news classification and visualized the importance through highlighted text images. Finally, Faner also participated in composing the final report and constructing the narratives in the article.
 
