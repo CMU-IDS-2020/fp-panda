@@ -899,6 +899,8 @@ st.markdown(
     unsafe_allow_html=True
 
     )
+    
+    
 ################################ load from pickle of the feature importance ##############
 from lime import lime_text
 
@@ -911,7 +913,11 @@ HtmlFile = open(f"Model/html/text_{news_n}.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
 components.html(source_code, height=400)
 
+st.markdown(
+    """<p style="font-family: Gill Sans; text-align:justify">By interpreting the fake news classification model that we trained, we found that the model will put larger weights on the person’s name when news contains names that are frequently mentioned in fake news, such as Obama. However, those highlighted texts are not the only indicator since our model is based on BERT and it makes the judgment based on the neighboring contextual information regarding different words in a sentence as well. </p>""",
+    unsafe_allow_html=True,
 
+    )
 st.markdown(
         f'''
     <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Summary</h2>
