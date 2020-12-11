@@ -395,7 +395,7 @@ geo_bar=alt.Chart(geo_df.melt(id_vars='index')).mark_bar().encode(
 geo_bar
 st.markdown(
 
-    f'''<div style="text-align:justify;font-family: Gill Sans;">From the plot above, we can see that the United States is more frequently mentioned in both two types of news, and they have similar proportions as well. Such findings are expected, as most of the political news from politifact.com is from the US, and due to the large sample size, both two types of news are equally distributed. Furthermore, we can see news related to New Jersey, Rhod Island, and Washington D.C. are mostly true news. We can see that these two areas, namely the New York region and D.C. region, are regarded as an economic center and political center. The news related to these areas is more likely facts-based since the misinformation might be very easy to check.  However, such reasoning could also explain why China and Iran have more fake news than true news. The misinformation about these two countries might be hard to detect due to the distance and language barrier. </div>''',
+    f'''<div style="text-align:justify;font-family: Gill Sans;">From the plot above, we can see that the United States is more frequently mentioned in both two types of news, and they have similar proportions as well. Such findings are expected, as most of the political news from politifact.com is from the US, and due to the large sample size, both two types of news are equally distributed. Furthermore, we can see news containing New Jersey, Rhode Island, and Washington D.C. are mostly true news. We can see that these two areas, namely the New York region and D.C. region, are regarded as an economic center and political center. The news related to these areas is more likely facts-based since the misinformation might be very easy to check.  Additionally, this could also explain why China and Iran have more fake news than true news. The information about these two countries and other foreign countries might be hard to verify due to the distance and language barrier. </div>''',
         unsafe_allow_html=True,
     )
 st.markdown(
@@ -418,7 +418,7 @@ per_bar=alt.Chart(per_df.melt(id_vars='index')).mark_bar().encode(
 per_bar
 st.markdown(
 
-    f'''<div style="text-align:justify;font-family: Gill Sans;">Here we extracted the most frequent names mentioned in both true and fake news. From the bar plot, we can see that Barack Obama and Hilary Clinton appear in more fake news statements than true news statements. Such findings align with findings in many news reports and studies. In 2016's election, both Hilary and Obama have publicly criticized the spread of fake news and mentioned the severe consequences it could bring to society. Besides, in the Standford paper “Social Media and Fake News in the 2016 Election,”  Professor Gentzkow pointed out: <li><i>"Trump’s victory has been dogged by claims that false news stories – including false reports that Hillary Clinton sold weapons to ISIS and the pope had endorsed Trump – altered the outcome".</i></li> Such claims confirm our findings that Hilary is a common target of fake news.</div>''',
+    f'''<div style="text-align:justify;font-family: Gill Sans;">Here we extracted the most frequent names mentioned in both true and fake news. From the bar plot, we can see that Barack Obama and Hilary Clinton appear in more fake news statements than true news statements. Such findings align with findings in many news reports and studies. In 2016's election, both Hilary and Obama have publicly criticized the spread of fake news and mentioned the severe consequences it could bring to society. Besides, in the Standford paper “Social Media and Fake News in the 2016 Election,”  Professor Gentzkow pointed out: <li><i>"Trump’s victory has been dogged by claims that false news stories – including false reports that Hillary Clinton sold weapons to ISIS and the pope had endorsed Trump – altered the outcome".</i></li> Such claims confirm our findings that Hilary is a common target of fake news during 2016 election.</div>''',
         unsafe_allow_html=True,
     )
 ########################### PART 2 ##############################
@@ -630,7 +630,7 @@ st.markdown(
 
     )
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify;">In this section, we applied VADER (Valence Aware Dictionary and sEntiment Reasoner, a lexicon and rule-based tool in analyzing the overall sentiment distribution for fake news and true news. </p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify;">In this section, we applied VADER (Valence Aware Dictionary and sEntiment Reasoner), a lexicon and rule-based tool in analyzing the overall sentiment distribution for fake news and true news. </p>""",
     unsafe_allow_html=True
 
     )
@@ -883,7 +883,7 @@ st.markdown(
 
 
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">There are have been different online fake news detector aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help us improve our ability in detecting fake news. However, there are few studies on how machine learning models actually predict the fake news and what part of the news have a greater contribution to the model decision. We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence may cause the news to be predicted as true or fake.</p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">There are different online fake news detectors aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help us improve our ability in detecting fake news. However, there are few studies on how machine learning models actually predict the fake news and what part of the news have a greater contribution to the model decision. We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence may cause the news to be predicted as true or fake.</p>""",
     unsafe_allow_html=True
 
     )
@@ -894,7 +894,8 @@ st.markdown(
 
     )
 st.markdown(
-    """ <p style="font-family: Gill Sans; text-align:justify">Here we presented three figures. The first one is the model's prediction with confidence, the second one is the word's weight by using local models to get the mimic the boundary, and the last one is the weight visualization aligned with words. After seeing all the properties of fake and true news, you can choose a sentence from the dataset to see if your prediction is the same as the model's</p>""",
+    """ <p style="font-family: Gill Sans; text-align:justify">Here we presented three figures. The first one is the probability of a news being fake or true predicted by the fake news classification model, the second one visualizes the weights of top five most important words in a two-sided bar chart, and the last one is the words in the news statement highlighted in different colors, a darker color representing a greater importance. After seeing all the properties of fake and true news, you can choose a sentence from the dataset to see if your prediction is the same as the prediction by the model. 
+</p>""",
     unsafe_allow_html=True
 
     )
