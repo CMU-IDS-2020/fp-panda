@@ -333,7 +333,7 @@ def get_sentences():
 st.markdown(
         f'''
     <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Whom and Where are mentioned in Fake News?</h2>
-    <p style="font-family: Gill Sans"> In this section, we will use Name Entity Recognition techniques to find what are the frequent entities mentioned in both true and fake news. </p> 
+    <p style="font-family: Gill Sans"> Understanding what subjects and people appear in the fake news statement is just as important as understanding who are telling them. In this section, we will use Name Entity Recognition techniques to find what are the frequently mentioned entities in both true and fake news. </p> 
     ''',
         unsafe_allow_html=True,
     )
@@ -431,17 +431,14 @@ st.markdown(
 st.markdown(
 
     f'''<p style="text-align:justify;font-family:Gill Sans;">
-In this section, we will explore the frequent words and words group used in each type of news base on their categories. Here we first extracted the most frequent words for both fack and true news and then extracted the word vector through mapping it with the GloVe embedding. Them we applied TSNE to reduce the dimensionality to 2 so that we can easily measure the similarity between words in a 2D space. </p>
+In this section, we will explore the frequent words and words group used in each type of news base on their categories. Here we first extracted the most frequent words for both fake and true news and then extracted the word vector through mapping it with the GloVe embedding. Them we applied t-SNE (t-distributed stochastic neighbor embedding) to reduce the dimensionality to 2 so that we can visualize and measure the similarity between words in a 2D space. </p>
 
     ''',
  unsafe_allow_html=True,
     )
 
 st.markdown(
-
     f'''<p style="text-align:justify;font-family:Gill Sans;">Word frequency for different types of news allows us to identify what words are likely to appear in fake news. By looking at news with different subjects, speakers, jobs, parties, and state, we could learn about words that show up in the fake news. For instance, if we use the subject as a filter and select news about crimes, we see that the word “gun” is likely to appear in fake news. Similarly, if we select news that is spoken by Donald Trump, we see the words “Clinton", “war", “bill” and “Iraq” appear very often. Moreover, from the bubble plot, we can see that the frequent words used in the fake news are relatively denser than the true news. For example independent-party, healthcare-subject, presidential-candidate-job. Such findings are intuitive, where the true news covers a wide range of topics while the fake news only focusing on some of those that are hard to validate.</p>
-
-
     ''',
  unsafe_allow_html=True,
     )
@@ -449,7 +446,6 @@ st.markdown(
 st.markdown(
 
     f'''<div style="text-align:justify;font-family:Gill Sans;color:#fc031c;"><li>Click on true or false label in legend to remove it from the plot</li></div>
-
 
     ''',
  unsafe_allow_html=True,
@@ -575,25 +571,17 @@ def get_plot_df(t1,t2,label1,label2,embeddings_dict):
 #     return dd
 
 feature_sel=st.selectbox(
-    'Select a feature to filter news on: ',
+    'Select a feature to analyze news on: ',
      meta_feature, key='meta_feature2')
 
 top_ten_subjects=df_train[feature_sel].value_counts()[:20].index
 
 df_train=preprocess_statement(df_train)
 col1,col2=st.beta_columns(2)
-# with col1:
-# label_sel1=st.selectbox(
-#         'Select a label value: ',
-#          label_values, key='label_sel2')
 
 subject_type1=st.selectbox(
         'Select a value for the feature: ',
          top_ten_subjects)
-# with col2:
-#     label_sel2=st.selectbox(
-#             'Select a label value: ',
-#              label_values, key='lsecond')
 
     
 # print('*******',subject_type1,subject_type2,label_sel2,label_sel1)
@@ -630,7 +618,7 @@ st.plotly_chart(fig,width=20, height=400)
 ########################### PART 3 ##############################
 
 st.markdown(
-    """ <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Overall Sentiment analysis</h2>""",
+    """ <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Sentiment analysis for news with different topics</h2>""",
     unsafe_allow_html=True
 
     )
