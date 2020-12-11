@@ -7,9 +7,9 @@
 * **Track**: Narrative
 
 ## Work distribution
-Faner Lin: Constructed EDA, sentiment analysis, and reports associated with them. 
+Faner Lin: Faner researched on related topics of fake news detection and discussed with Shuaidong to design different components for the narrative article. Additionally, Faner focused on perform exploratory data analysis on the fake news dataset and designed the component for exploring number of fake news associated with different subjects, speakers, and generating interactive components for sentiment analysis for different news and sentence-level information for different news. Faner also trained fake news classification model with BERT as base model and applied interpretability tools lime-text for analyzing the word importance for fake news classification and visualized the importance through highlighted text images. Finally, Faner also participated in composing the final report and constructing the narratives in the article. 
 
-Shuaidong Pan:
+Shuaidong Pan: Shuaidong researched on related topics and discussed with Faner to design different components for the narrative article. Additionally, Shuaidong also focused on selecting a fake news dataset and designing interactive components for entity recognition in news statement and word frequency. He used GloVe embedding and t-SNE to visualize the word frequency in 2d space and applied Name Entity Recognition techniques to extract name and places entities in news statements. Shuaidong also worked on designing and improving the layout of the article and researching on related works. Finally, Shuaidong also participated in composing the final report and constructing the narratives in the article. 
 
 
 ## Deliverables
