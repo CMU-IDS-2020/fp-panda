@@ -24,7 +24,7 @@ Mand journal articles have pointed out that fake news will affect elections and 
 ## Methods
 Our methods could be mainly divided into two different parts: first, we designed different interactive components to study the characteristics of the fake news in the LIAR  dataset, second, we trained fake news detection models with BERT as a base model and applied interpretability tools to analyze words in a news statement that affect model’s prediction. More details will be discussed in the following section. 
 
-##### Visualization Components
+### Visualization Components
 
 Our narrative article contains different interactive visualizations and those visualizations are intended to guide people to explore possible characteristics of fake news compared to true news. The article starts with three news statements, with some additional information, ie. topics, speaker, the job of speaker, party,  intending to test people’s ability to identify fake news. Through the test, we want to demonstrate that fake news could be very well-designed and people may have difficulties distinguishing fake news from true news if they are not an expert in the fields that are being discussed.
 
@@ -36,7 +36,16 @@ Understanding what are the frequently used words in fake news and true news will
 
 Moreover, sentiment analysis allows people to quantify and study the subjective information of a given news statement. So we applied VADER (Valence Aware Dictionary and sEntiment Reasoner), a lexicon and rule-based tool in analyzing the overall sentiment distribution for fake news and true news. There are three commonly known sentiments, positive, negative, and neutral. In our visualization, in addition to positive, negative, and neutral sentiments, the Compound score is also presented, which is a score that calculates the sum of all the lexicon ratings which have been normalized between -1 (most extreme negative) and +1 (most extreme positive). News covering different subjects, and news from different speakers may have different sentiments for both fake type and true type. For instance, a speaker may present more negative sentiments when telling fake news and fake news for a specific topic may also tend to be more positive or negative in sentiment. This allows readers to select and explore the sentiments for the news types that they are interested in and learn more about their characteristics. 
 
-We further examined the sentence level information for news, including the number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type-token ratio (number of unique words to number of total words). Similarly, people could select a feature to analyze the news on and review different features and their relations. The visualization intends to offer additional sentence-level information for understanding the characteristics of fake news. 
+We further examined the sentence level information for news, including the number of words in a sentence, number of characters per words, total characters, total words, number of complex words, number of long words, and type-token ratio (number of unique words to number of total words). Similarly, people could select a feature to analyze the news on and review different features and their relations. The visualization intends to offer additional sentence-level information for understanding the characteristics of fake news.
+
+#### Fake News Detection Model
+
+Different online fake news detectors are aiming to help people distinguish fake news from true news. Understanding how models predict fake news would also help us improve our ability in detecting fake news. However, there are few studies on how machine learning models predict the fake news and what part of a news statement will affect the model decision. We aim to make use of interpretable machine learning techniques to help people understand what words or phrases in a sentence may cause the news to be predicted as true or fake. 
+
+We first trained a fake news classification model with BERT as a base model on the news statements from LIAR dataset. We then applied lime as an interpretation tool to analyze which words in the sentence play important roles for the final prediction. Since the saved model is too large to use in the designed application, we have included 25 example news statements from LIAR dataset, each with weights for words generated from the trained fake news detection model and lime-text interpretability tool. We allow readers to randomly select a news statement and visualize them in the article. 
+
+There are three different parts of the visualization. The first one is the probability of a news being fake or true predicted by the fake news classification model, the second one visualizes the weights of top five most important words in a two-sided bar chart, and the last one is the words in the news statement highlighted in different colors, a darker color representing a larger importance. This visualization allow users to compare their judgements with the model’s judgement and investigate what words are important for judgements. By understanding how a machine learning model makes predictions based on a news statement, readers could also think about how they will interpret a news statement. 
+
 ## Results
 
 ## Discussion
