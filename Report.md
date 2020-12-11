@@ -73,3 +73,12 @@ Additionally, as many existing fake news detectors have achieved satisfactory re
 
 With the widespread of fake news in online social media outlets, fake news also exists in different forms and the source of news, speaker of the news are all important factors in determining the reliability of a news statement. In the article, we have analyzed different aspects of fake news,  from news topics and speakers to text-related features, the frequent term used, sentiments, entities in fake news, and developed fake news prediction models with interpretability tools to analyze how models make predictions. However, our analysis mainly focuses on political news and does not focus on the news with images and videos, for future work, a multimodal approach could be used to analyze other forms of news as well and not just text statements. 
 
+## Reference
+
+University of Central Florida News | UCF Today. 2020. How Fake News Affects U.S. Elections 
+
+Stellino, M., 2020. 8 Resources To Detect Fake News. [online] Newscollab.org
+
+Researchguides.library.wisc.edu. 2020. [online]
+
+Allcott, H. and Gentzkow, M., 2017. Social media and fake news in the 2016 election. Journal of economic perspectives, 31(2), pp.211-36.
