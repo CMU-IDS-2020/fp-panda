@@ -952,7 +952,51 @@ st.markdown("""<div style="font-family: Gill Sans;text-align: justify;"> We furt
          unsafe_allow_html=True)
                     
                     
-st.markdown("""<a href="https://www.politifact.com">PolitiFact</a>""", unsafe_allow_html=True)
-st.markdown("""<a href="https://www.factcheck.org">FactCheck</a>""", unsafe_allow_html=True)
-st.markdown("""<a href= https://www.snopes.com> Snopes </a>""", unsafe_allow_html=True)
+st.markdown(
+        f'''
+    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Some Useful Facts Checking Website</h2>
+    ''',
+        unsafe_allow_html=True,
+    )
+
+
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li><a href="https://www.politifact.com">PolitiFact</a>: PolitiFact is a fact-checking website that rates the accuracy of claims by elected officials and others on its Truth-O-Meter.</li></p>
+
+                """, unsafe_allow_html=True)
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li><a href="https://www.factcheck.org">FactCheck</a>: monitors the factual accuracy of what is said by major U.S. political players in the form of TV ads, debates, speeches, interviews and news releases.</li></p>""", unsafe_allow_html=True)
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li><a href= https://www.snopes.com>Snopes</a>: The definitive Internet reference source for researching urban legends, folklore, myths, rumors, and misinformation.</li></p>""", unsafe_allow_html=True)
+
+
+st.markdown(
+        f'''
+    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Reference</h2>
+    ''',
+        unsafe_allow_html=True,
+    )
+
+
+
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+        unsafe_allow_html=True,
+    )
+
+
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+        unsafe_allow_html=True,
+    )
+
+
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+        unsafe_allow_html=True,
+    )
+
+
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+        unsafe_allow_html=True,
+    )
+
+
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> 引用写这里 </li></p>""",
+        unsafe_allow_html=True,
+    )
                     
