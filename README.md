@@ -30,7 +30,7 @@ slides for design review: https://docs.google.com/presentation/d/1VTH1WSd9Kigl7f
 
 ### Final deliverables
 
-- [ ] All code for the project should be in the repo.
-- [ ] A 5 minute video demonstration.
-- [ ] Update Readme according to Canvas instructions.
+- [x] All code for the project should be in the repo.
+- [x] A 5 minute video demonstration.
+- [x] Update Readme according to Canvas instructions.
 - [ ] A detailed project report. The contact should submit the video and report as a PDF on Canvas.
