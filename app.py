@@ -212,7 +212,12 @@ st.markdown(
     ''',
         unsafe_allow_html=True,
     )
-    
+st.markdown(
+        f'''
+    <p style="text-align: justify;font-family: Gill Sans">  The source of fake news is important factor in determining whether a news content is reliable or not. By looking at speakers that have the highest fake news ratio, we found that news from chain-email and blog posting are likely to be fake. Additionally, some speakers such as Donald Trump, Ben Carson, and Rush Limebaugh also have high ratio for telling fake news. </p>
+    ''',
+        unsafe_allow_html=True,
+    )    
 
 columns=['id','label','statement','subject','speaker', 'job', 'state','party','barely_true_counts','false_counts',
                   'half_true_counts','mostly_true_counts','pants_on_fire_counts','context']
@@ -327,7 +332,7 @@ def get_sentences():
 
 st.markdown(
         f'''
-    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Whom and Where are Prone to Become The Target of Fake News?</h2>
+    <h2 style="font-family: Gill Sans; font-weight: 200; font-size: 30px;">Whom and Where are mentioned in Fake News?</h2>
     <p style="font-family: Gill Sans"> In this section, we will use Name Entity Recognition techniques to find what are the frequent entities mentioned in both true and fake news. </p> 
     ''',
         unsafe_allow_html=True,
@@ -610,16 +615,16 @@ st.plotly_chart(fig,width=20, height=400)
 #                  text="word" ,log_x=True, size_max=60)
 # st.plotly_chart(fig,width=50, height=400)
 
-try:
-    fig=plt.figure(figsize=(10, 5))
-    wordcloud=WordCloud(stopwords=stopwords, background_color="white").generate(total_text)
-    # print(WordCloud(stopwords=stopwords).process_text(total_text))
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis("off")
-    plt.show()
-    st.pyplot(fig)
-except:
-    st.write('No news found in the database, please try other selection criteria')
+# try:
+#     fig=plt.figure(figsize=(10, 5))
+#     wordcloud=WordCloud(stopwords=stopwords, background_color="white").generate(total_text)
+#     # print(WordCloud(stopwords=stopwords).process_text(total_text))
+#     plt.imshow(wordcloud, interpolation='bilinear')
+#    plt.axis("off")
+#     plt.show()
+#     st.pyplot(fig)
+# except:
+#     st.write('No news found in the database, please try other selection criteria')
 
 
 ########################### PART 3 ##############################
