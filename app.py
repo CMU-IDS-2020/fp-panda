@@ -999,8 +999,7 @@ st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> Turner
         unsafe_allow_html=True,
     )
                     
-st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> Kurtzleben, Danielle. "With “fake news,” Trump moves from alternative facts to alternative language." National Public Radio. Retrieved from http://www. npr. org/2017/02/17/515630467/with-fake-news-trump-moves-from-alternative-facts-to-alternative-language (2017).
- </li></p>""",
+st.markdown("""<p style="font-family: Gill Sans; text-align:justify"><li> Cunha, E., Magno, G., Caetano, J., Teixeira, D. and Almeida, V., 2018, September. Fake news as we feel it: perception and conceptualization of the term “fake news” in the media. In International Conference on Social Informatics (pp. 151-166). Springer, Cham. </li></p>""",
         unsafe_allow_html=True,
     )
                     
