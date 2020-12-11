@@ -27,7 +27,12 @@ Ability to identify fake news and understand their characteristics are criticall
 
 
 ## Related Work
-Mand journal articles have pointed out that fake news will affect elections and the spread of fake news will also affect people’s attitudes, beliefs, and even actual behaviors. Additionally, it is found that the spread of fake news on hot topics, such as race relations, gun rights, and immigration issues, during different events would also divide the nation and causing chaos. 
+Many journal articles have pointed out that fake news will affect elections and the spread of fake news will also affect people’s attitudes, beliefs, and even actual behaviors. Additionally, it is found that the spread of fake news on hot topics, such as race relations, gun rights, and immigration issues, during different events would also divide the nation and causing chaos.
+
+In the past few years, researchers have conducted many studies on various aspects of fake news, including fake news cascade, fake news properties, and building fake news detectors. Studies show that fake news appears more frequently during the presidential elections, such as 2016 and 2020. During such times, politicians easily become the target nor the source of the fake news. Since political news contains a large variety of topics, it is still hard for people, even machines to distinguish them.
+
+With the advances in machine learning, many fake news detectors achieved a good result. When the BERT model shows its powerfulness in NLP, it also boosts the model's performance of fake news classification tasks. Furthermore, other models, using the multimodel approach such as combining image model, metadata model, and language model into one fusion are particularly popular in current research. 
+
 ## Methods
 Our methods could be mainly divided into two different parts: first, we designed different interactive components to study the characteristics of the fake news in the LIAR  dataset, second, we trained fake news detection models with BERT as a base model and applied interpretability tools to analyze words in a news statement that affect model’s prediction. More details will be discussed in the following section. 
 
