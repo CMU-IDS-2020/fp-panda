@@ -20,7 +20,7 @@ Short (~250 words) abstract of the concrete data science problem and how the sol
 ## Introduction
 
 ## Related Work
-
+Mand journal articles have pointed out that fake news will affect elections and the spread of fake news will also affect people’s attitudes, beliefs, and even actual behaviors. Additionally, it is found that the spread of fake news on hot topics, such as race relations, gun rights, and immigration issues, during different events would also divide the nation and causing chaos. 
 ## Methods
 
 ## Results
