@@ -967,7 +967,7 @@ st.markdown(f"""
         )
                     
                     
-st.markdown("""<a href="https://www.politifact.com">PolitiFact</a>""", unsafe_allow_html=True)
-st.markdown("""<a href="https://www.factcheck.org">FactCheck</a>""", unsafe_allow_html=True)
-st.markdown("""<a href= https://www.snopes.com> Snopes </a>""", unsafe_allow_html=True)
+# st.markdown("""<a href="https://www.politifact.com">PolitiFact</a>""", unsafe_allow_html=True)
+# st.markdown("""<a href="https://www.factcheck.org">FactCheck</a>""", unsafe_allow_html=True)
+# st.markdown("""<a href= https://www.snopes.com> Snopes </a>""", unsafe_allow_html=True)
                     
