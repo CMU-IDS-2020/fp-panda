@@ -24,6 +24,8 @@ Mand journal articles have pointed out that fake news will affect elections and 
 ## Methods
 Our methods could be mainly divided into two different parts: first, we designed different interactive components to study the characteristics of the fake news in the LIAR  dataset, second, we trained fake news detection models with BERT as a base model and applied interpretability tools to analyze words in a news statement that affect model’s prediction. More details will be discussed in the following section. 
 
+##### Visualization Components
+
 Our narrative article contains different interactive visualizations and those visualizations are intended to guide people to explore possible characteristics of fake news compared to true news. The article starts with three news statements, with some additional information, ie. topics, speaker, the job of speaker, party,  intending to test people’s ability to identify fake news. Through the test, we want to demonstrate that fake news could be very well-designed and people may have difficulties distinguishing fake news from true news if they are not an expert in the fields that are being discussed.
 
 Then, we explored what topics fake news tends to cover and what people or media outlets often tell fake news through the analysis of the number of fake news and the ratio of fake news of different topics and speakers. For interaction, we allow users to select the number of entries to display and a feature for analyzing the news. 
