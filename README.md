@@ -38,7 +38,7 @@ slides for design review: https://docs.google.com/presentation/d/1VTH1WSd9Kigl7f
 ### Running Instructions
 1. clone the github repo to local directory
 2. download all packages and dependencies needed. 
-pip install -r requirements.txt
+<code> pip install -r requirements.txt </code>
 3. Change path to the project directory, run 
-streamlit run app.py
+<code> streamlit run app.py </code>
 
