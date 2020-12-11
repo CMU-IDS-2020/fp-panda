@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import numpy as np
-from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 import nltk
@@ -55,7 +54,6 @@ st.markdown(
     ''',
         unsafe_allow_html=True,
     )
-# st.title("Learn to Predict Fake News")
 
 st.markdown(
         f'''
@@ -210,7 +208,7 @@ st.markdown(
     
 st.markdown(
         f'''
-    <p style="text-align: justify;font-family: Gill Sans">  We found through analysis that the subjects with most amount of fake news covers include health-care, taxes, immigration, elections and candidates-biography. Given the large amount of news that are associated with those topics, we also calculated the fake news ratio, number of fake news to total number of news, for further analysis and it is found that subjects with highest fake news ratio are state-budget, labor (over 80%), terrorism and foreign-policy (over 70%), and health-care and religion, over 60%.   </p>
+    <p style="text-align: justify;font-family: Gill Sans">  Through analysis, it is found that the subjects with most amount of fake news include health-care, taxes, immigration, elections and candidates-biography. Given the large amount of news that are associated with those topics, we also calculated the fake news ratio, number of fake news to total number of news, for further analysis and it is found that subjects with highest fake news ratio are state-budget, labor (over 80%), terrorism and foreign-policy (over 70%), and health-care and religion, over 60%.   </p>
     ''',
         unsafe_allow_html=True,
     )
@@ -881,10 +879,6 @@ scatter_chart=st.altair_chart(
     y_ticks | (points & x_ticks) | bars 
 )
 
-##################readability score#####################
-# st.header('Readability Score for news')
-
-
 
 ########################### PART 6 ##############################
 # st.header('How machine learning models distinguish fake news?')
@@ -919,14 +913,6 @@ st.markdown(
 ################################ load from pickle of the feature importance ##############
 from lime import lime_text
 
-# pickle_file=open('Model/lime_explainer.pkl','rb')
-# text_dic=pickle.load(pickle_file)
-# pickle_file.close()
-
-# key1=list(text_dic.keys())[0]
-# explained=text_dic[key1]
-# explained_prob=sorted(explained.as_map(), key=lambda x: abs(x[1]), reverse=True)
-# explained_prob=pd.DataFrame(explained_prob, columns=['str', 'weights']).reset_index()
 
 import streamlit.components.v1 as components
 
@@ -935,12 +921,6 @@ news_n = st.number_input('Select a news to view the model analysis',min_value=1,
 HtmlFile = open(f"Model/html/text_{news_n}.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
 components.html(source_code, height=400)
-
-
-# f=open('Model/t.txt', 'r')
-# t=f.readlines()
-# t=' '.join(t)     
-# st.markdown(t,unsafe_allow_html=True)
 
 
 st.markdown(
